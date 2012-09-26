@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Jumper game</title>
+		<style>
+            #jumper_id {
+	            position: absolute;
+                left: 300px;
+                top: 300px;
+                width: 92px;
+                height: 62px;
+                background-image: url('images/jumper.png');
+            }
+            #slat_id {
+                position: absolute;
+				left: 300px;
+				top: 400px;
+				width: 92px;
+				height: 20px;
+				background-image: url('images/slat_img.png');
+            }
+            body {
+                background-image: url('images/backdrop.png');
+                background-size: 100%;
+                background-position-y: 0px;
+            }
+		</style>
+    </head>
+	
+	<body>
+		<div id="jumper_id"></div>
+        <div id="slat_id"></div>
+        <script src="scripts/jumper.js" type="text/javascript"></script>
+        <script src="scripts/slat.js" type="text/javascript"></script>
+		<script src="scripts/game.js" type="text/javascript"></script>
+	</body>
+</html>
