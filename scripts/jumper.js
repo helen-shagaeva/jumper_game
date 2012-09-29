@@ -13,6 +13,7 @@ function newJumper() {
     this.yvel = 0;
     this.xacc = 0;
     this.yacc = 3;
+    this.last_slat_y_pos = 400;
 	this.boosting = false;
     this.updateJumper = function(jumperObj, slat_js) {
         // Navigate
@@ -23,8 +24,12 @@ function newJumper() {
         if(jumperObj.boosting) {
             jumperObj.yacc = -5;
         }
+
+        // TODO Make true boosting
         
         this.falling();
+
+        // TODO Do it In loop with all slat's
 
        // Land
 	    if (jumperObj.ypos > (slat_js.ypos - slat_js.height_of_slat) ) {
