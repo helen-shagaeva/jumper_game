@@ -22,20 +22,19 @@ function Jumper() {
         jumperObj.xpos += jumperObj.xvel;
 
         // Boost
-        if (jumperObj.boosting) {
-            jumperObj.yacc = -5;
+        if (jumperObj.yacc >= 0) {
+            jumperObj.boosting = false;
+            //jumperObj.yacc = -5;
         }
-
-        // TODO Make true boosting
-
 
         this.falling(slats);
 
 
         if (jumperObj.ypos + jumperObj.yvel >= (jumperObj.last_slat.ypos - this.last_slat.height_of_slat)) {
-            jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
+            jumperObj.ypos = this.last_slat.ypos - slats[oneSlat].height_of_slat - 30;
+            jumperObj.boosting = true;
+            jumperObj.yacc = -3;
             jumperObj.yvel = 0;
-            jumperObj.yacc = 0;
             jumperObj.xacc = 0;
             jumperObj.xvel = 0;
         }
@@ -47,10 +46,12 @@ function Jumper() {
             if (!this.boosting) {
                 if (this.xpos >= slats[oneSlat].xpos && this.xpos <= slats[oneSlat].xpos + slats[oneSlat].width
                             && this.ypos <= slats[oneSlat].ypos - slats[oneSlat].height_of_slat
-                            && this.ypos + jumperObj.yvel >= slats[oneSlat].ypos - this.yacc- slats[oneSlat].height_of_slat) {
-                    changeSlat = true;
-                    jumperObj.last_slat = slats[oneSlat];
-                    jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
+                            && this.ypos + jumperObj.yvel >= slats[oneSlat].ypos - this.yacc - slats[oneSlat].height_of_slat) {
+                    if (slats[oneSlat] != jumperObj.last_slat) {
+                        changeSlat = true;
+                        jumperObj.last_slat = slats[oneSlat];
+                        //jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
+                    }
                 }
             }
         }
