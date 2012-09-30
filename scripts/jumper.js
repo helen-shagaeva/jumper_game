@@ -8,7 +8,7 @@ function Jumper() {
     this.gravity = 0.3;
     this.step = 190;
     this.xpos = 300;
-    this.ypos = 400;
+    this.ypos = 300;
     this.xvel = 0;
     this.yvel = 0;
     this.xacc = 0;
@@ -32,8 +32,7 @@ function Jumper() {
         this.falling(slats);
 
 
-        // TODO Do it In loop with all slat's
-        if (jumperObj.ypos >= (jumperObj.last_slat.ypos - this.last_slat.height_of_slat)) {
+        if (jumperObj.ypos + jumperObj.yvel >= (jumperObj.last_slat.ypos - this.last_slat.height_of_slat)) {
             jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
             jumperObj.yvel = 0;
             jumperObj.yacc = 0;
@@ -48,15 +47,10 @@ function Jumper() {
             if (!this.boosting) {
                 if (this.xpos >= slats[oneSlat].xpos && this.xpos <= slats[oneSlat].xpos + slats[oneSlat].width
                             && this.ypos <= slats[oneSlat].ypos - slats[oneSlat].height_of_slat
-                            && this.ypos >= slats[oneSlat].ypos - this.gravity - this.yacc- slats[oneSlat].height_of_slat) {
+                            && this.ypos + jumperObj.yvel >= slats[oneSlat].ypos - this.yacc- slats[oneSlat].height_of_slat) {
                     changeSlat = true;
                     jumperObj.last_slat = slats[oneSlat];
-                    jumperObj.ypos = slats[oneSlat].ypos - slats[oneSlat].height_of_slat;
                     jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
-                    jumperObj.yvel = 0;
-                    jumperObj.yacc = 0;
-                    jumperObj.xacc = 0;
-                    jumperObj.xvel = 0;
                 }
             }
         }
