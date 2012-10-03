@@ -3,7 +3,7 @@
  * Date: 9/16/12
  * Time: 5:44 PM
  */
-// конструктор jumper
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ jumper
 function Jumper() {
     this.gravity = 0.3;
     this.step = 190;
@@ -13,80 +13,79 @@ function Jumper() {
     this.yvel = 0;
     this.xacc = 0;
     this.yacc = 3;
-    // Start slat (блок)
+    // Start slat (пїЅпїЅпїЅпїЅ)
     this.last_slat = new Slat(300, 570);
     this.boosting = false;
     this.updateJumper = function (jumperObj, slats) {
-        
-        //получаем размеры окна - нужно для перериросвки персонажа
-        //когда он находится возле края экрана
-        winSizes=getWinSize();
-                
-        // Navigate (навигация)
+
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        winSizes = getWinSize();
+
+        // Navigate (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         jumperObj.xvel += jumperObj.xacc;
         jumperObj.xpos += jumperObj.xvel;
 
         // Boost
         if (jumperObj.yacc >= 0) {
             jumperObj.boosting = false;
-            //jumperObj.yacc = -5;
         }
-        
+
         this.falling(slats);
 
 
         if (jumperObj.ypos + jumperObj.yvel >= (jumperObj.last_slat.ypos - this.last_slat.height_of_slat)) {
             jumperObj.ypos = this.last_slat.ypos - slats[oneSlat].height_of_slat - 30;
             jumperObj.boosting = true;
-            
+
             jumperObj.yacc = -3;
-            
+
             jumperObj.yvel = 0;
             jumperObj.xacc = 0;
             jumperObj.xvel = 0;
         }
-        
-        //--------------------------------ПЕРЕПИСАТЬ ПОЗЖЕ:        
-        
-        //Нужно, чтобы персонаж падал вниз все врем, если под ним нет других объектов.
-        document.onmousedown=function(e){
-          //var direction=mouseShowHandler(e).x<winSizes.myWidth/2 ? 'leftside' : 'rightside';
-          if(mouseShowHandler(e).x<winSizes.myWidth/2){
-            jumperObj.xvel -= 3;
-            if(jumperObj.xpos<=-20) jumperObj.xpos=winSizes.myWidth-40;
-            //--падает
-          }
-          else if(mouseShowHandler(e).x>winSizes.myWidth/2){
-            jumperObj.xvel += 3;
-            if(jumperObj.xpos>=winSizes.myWidth-60) jumperObj.xpos=-40;
-            //--падает
-          }
+
+        //--------------------------------пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:        
+
+        //пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+        document.onmousedown = function(e) {
+            //var direction=mouseShowHandler(e).x<winSizes.myWidth/2 ? 'leftside' : 'rightside';
+            if (mouseShowHandler(e).x < winSizes.myWidth / 2) {
+                jumperObj.xvel -= 3;
+                if (jumperObj.xpos <= -20) jumperObj.xpos = winSizes.myWidth - 40;
+                //--пїЅпїЅпїЅпїЅпїЅпїЅ
+            }
+            else if (mouseShowHandler(e).x > winSizes.myWidth / 2) {
+                jumperObj.xvel += 3;
+                if (jumperObj.xpos >= winSizes.myWidth - 60) jumperObj.xpos = -40;
+                //--пїЅпїЅпїЅпїЅпїЅпїЅ
+            }
         }
-        
-        document.onkeydown=function(e){
-          b_keyPressed=true;
-          if(b_keyPressed&&getKeyCode(e)=="37"){
-            //alert('left');
-            jumperObj.xvel -= 3;
-            if(jumperObj.xpos<=-20) jumperObj.xpos=winSizes.myWidth-40;
-            //--падает
-          }
-           else if(b_keyPressed&&getKeyCode(e)=="39"){
-            //alert('right');
-            jumperObj.xvel += 3;
-            if(jumperObj.xpos>=winSizes.myWidth-60) jumperObj.xpos=-40;
-            //--падает
-          }
+
+        document.onkeydown = function(e) {
+            b_keyPressed = true;
+            if (b_keyPressed && getKeyCode(e) == "37") {
+                //alert('left');
+                jumperObj.xvel -= 3;
+                if (jumperObj.xpos <= -20) jumperObj.xpos = winSizes.myWidth - 40;
+                //--пїЅпїЅпїЅпїЅпїЅпїЅ
+            }
+            else if (b_keyPressed && getKeyCode(e) == "39") {
+                //alert('right');
+                jumperObj.xvel += 3;
+                if (jumperObj.xpos >= winSizes.myWidth - 60) jumperObj.xpos = -40;
+                //--пїЅпїЅпїЅпїЅпїЅпїЅ
+            }
         }
-         
-        document.onkeyup=function(){
-          b_keyPressed=false;
+
+        document.onkeyup = function() {
+            b_keyPressed = false;
         }
-        
-        
+
+
         //--------------------------------
 
-        
+
     };
     this.falling = function (slats) {
         // Fall
@@ -94,12 +93,11 @@ function Jumper() {
         for (oneSlat in slats) {
             if (!this.boosting) {
                 if (this.xpos >= slats[oneSlat].xpos && this.xpos <= slats[oneSlat].xpos + slats[oneSlat].width
-                            && this.ypos <= slats[oneSlat].ypos - slats[oneSlat].height_of_slat
-                            && this.ypos + jumperObj.yvel >= slats[oneSlat].ypos - this.yacc - slats[oneSlat].height_of_slat) {
-                    if (slats[oneSlat] != jumperObj.last_slat) {
+                    && this.ypos <= slats[oneSlat].ypos - slats[oneSlat].height_of_slat
+                    && this.ypos + this.yvel >= slats[oneSlat].ypos - this.yacc - slats[oneSlat].height_of_slat) {
+                    if (slats[oneSlat] != this.last_slat) {
                         changeSlat = true;
-                        jumperObj.last_slat = slats[oneSlat];
-                        //jumperObj.ypos = this.last_slat.ypos - jumperObj.step;
+                        this.last_slat = slats[oneSlat];
                     }
                 }
             }
