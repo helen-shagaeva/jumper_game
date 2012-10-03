@@ -1,0 +1,43 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+
+body {
+  margin:0px;
+  padding:0px;
+  
+  background-image: url('images/background.png');
+	/*background-size: 100%;*/
+	/*background-position-y: 0px;*/
+}
+
+#jumper_id {
+	position: absolute;
+  left: 300px;
+  top: 500px;
+  width: 40px;
+  height: 70px;
+  background-image: url('images/human.png');
+}
+
+#slat1_id {
+  position: absolute;
+	width: 93px;
+	height: 10px;
+	background-image: url('images/slat.png');
+}
+
+#slat2_id {
+  position: absolute;
+  width: 93px;
+  height: 10px;
+  background-image: url('images/slat.png');
+}
+
+#slat3_id {
+  position: absolute;
+  width: 93px;
+  height: 10px;
+  background-image: url('images/slat.png');
+}

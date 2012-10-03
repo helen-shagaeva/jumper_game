@@ -3,7 +3,7 @@
  * Date: 9/16/12
  * Time: 5:44 PM
  */
-
+// конструктор jumper
 function Jumper() {
     this.gravity = 0.3;
     this.step = 190;
@@ -13,11 +13,16 @@ function Jumper() {
     this.yvel = 0;
     this.xacc = 0;
     this.yacc = 3;
-    // Start slat
+    // Start slat (блок)
     this.last_slat = new Slat(300, 570);
     this.boosting = false;
     this.updateJumper = function (jumperObj, slats) {
-        // Navigate
+        
+        //получаем размеры окна - нужно для перериросвки персонажа
+        //когда он находится возле края экрана
+        winSizes=getWinSize();
+                
+        // Navigate (навигация)
         jumperObj.xvel += jumperObj.xacc;
         jumperObj.xpos += jumperObj.xvel;
 
@@ -26,18 +31,62 @@ function Jumper() {
             jumperObj.boosting = false;
             //jumperObj.yacc = -5;
         }
-
+        
         this.falling(slats);
 
 
         if (jumperObj.ypos + jumperObj.yvel >= (jumperObj.last_slat.ypos - this.last_slat.height_of_slat)) {
             jumperObj.ypos = this.last_slat.ypos - slats[oneSlat].height_of_slat - 30;
             jumperObj.boosting = true;
+            
             jumperObj.yacc = -3;
+            
             jumperObj.yvel = 0;
             jumperObj.xacc = 0;
             jumperObj.xvel = 0;
         }
+        
+        //--------------------------------ПЕРЕПИСАТЬ ПОЗЖЕ:        
+        
+        //Нужно, чтобы персонаж падал вниз все врем, если под ним нет других объектов.
+        document.onmousedown=function(e){
+          //var direction=mouseShowHandler(e).x<winSizes.myWidth/2 ? 'leftside' : 'rightside';
+          if(mouseShowHandler(e).x<winSizes.myWidth/2){
+            jumperObj.xvel -= 3;
+            if(jumperObj.xpos<=-20) jumperObj.xpos=winSizes.myWidth-40;
+            //--падает
+          }
+          else if(mouseShowHandler(e).x>winSizes.myWidth/2){
+            jumperObj.xvel += 3;
+            if(jumperObj.xpos>=winSizes.myWidth-60) jumperObj.xpos=-40;
+            //--падает
+          }
+        }
+        
+        document.onkeydown=function(e){
+          b_keyPressed=true;
+          if(b_keyPressed&&getKeyCode(e)=="37"){
+            //alert('left');
+            jumperObj.xvel -= 3;
+            if(jumperObj.xpos<=-20) jumperObj.xpos=winSizes.myWidth-40;
+            //--падает
+          }
+           else if(b_keyPressed&&getKeyCode(e)=="39"){
+            //alert('right');
+            jumperObj.xvel += 3;
+            if(jumperObj.xpos>=winSizes.myWidth-60) jumperObj.xpos=-40;
+            //--падает
+          }
+        }
+         
+        document.onkeyup=function(){
+          b_keyPressed=false;
+        }
+        
+        
+        //--------------------------------
+
+        
     };
     this.falling = function (slats) {
         // Fall

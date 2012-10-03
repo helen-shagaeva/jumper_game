@@ -34,8 +34,8 @@ draw = function(jumperObj) {
 	jumper.style.left = jumperObj.xpos;
 	jumper.style.top = jumperObj.ypos;
 
-    slat_objs[1].ypos++;
-    slat_h2.style.top = slat_objs[1].ypos;
+  slat_objs[1].ypos++;
+  slat_h2.style.top = slat_objs[1].ypos;
 };
 
 update = function() {
