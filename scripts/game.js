@@ -1,4 +1,5 @@
 //first slat values
+// Need for testing
 first_slat_x = 300;
 first_slat_y = 570;
 
@@ -7,11 +8,11 @@ var jumperObj = new Jumper();
 jumper = document.getElementById("jumper_id");
 
 // var slatObj = new Slat(first_slat_x, first_slat_y);
-/*
+
  var slat_h1 = document.getElementById("slat1_id");
  var slat_h2 = document.getElementById("slat2_id");
  var slat_h3 = document.getElementById("slat3_id");
- */
+
 
 var slat_objs = new Array();
 
@@ -32,25 +33,27 @@ slatsGenerate = function(slats) {
     }
     return slats;
 };
-/*
- slat_objs[0]=(new Slat(first_slat_x, first_slat_y));
- slat_objs[1]=(new Slat(first_slat_x, first_slat_y - 400));
- slat_objs[2]=(new Slat(first_slat_x + 200, first_slat_y - 200));
- */
 
-slat_objs = slatsGenerate(slat_objs);
+ //slat_objs = slatsGenerate(slat_objs);
+
+ slat_objs[0]=(new Slat(first_slat_x, first_slat_y));
+ slat_objs[1]=(new Slat(first_slat_x+ 100, first_slat_y - 100));
+ slat_objs[2]=(new Slat(first_slat_x+ 200, first_slat_y - 200));
+
+
+//slat_objs = slatsGenerate(slat_objs);
 
 //Initial
-/*
+
 slat_h1.style.top = first_slat_y;
 slat_h1.style.left = first_slat_x;
 
-slat_h2.style.top = first_slat_y - 400;
-slat_h2.style.left = first_slat_x;
+slat_h2.style.top = first_slat_y - 100;
+slat_h2.style.left = first_slat_x + 100;
 
 slat_h3.style.top = first_slat_y - 200;
-slat_h3.style.left = first_slat_x + 300;
-*/
+slat_h3.style.left = first_slat_x+ 200;
+
 drawSlats = function(slats) {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
