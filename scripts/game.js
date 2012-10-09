@@ -67,8 +67,8 @@ drawSlats = function(slats) {
 // Copy the "logical" object's position to the
 // element in the DOM
 draw = function(jumperObj) {
-    jumper.style.left = jumperObj.xpos;
-    jumper.style.top = jumperObj.ypos;
+    jumper.style.left = jumperObj.i_xpos;
+    jumper.style.top = jumperObj.i_ypos;
 
     drawSlats(slat_objs);
 //    slat_objs[1].ypos++;
