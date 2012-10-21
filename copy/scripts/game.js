@@ -3,23 +3,15 @@
 first_slat_x = 300;
 first_slat_y = 570;
 
-
-var winSizes = getWinSize();
-
-var canvas = document.getElementById('scene');
-drawScene(winSizes.myWidth, winSizes.myHeight, canvas);
-
-//jumperObj.drawJumper(canvas);
-
-
 // Setup copter element and jumper model
 var jumperObj = new Jumper();
 jumper = document.getElementById("jumper_id");
 
+// var slatObj = new Slat(first_slat_x, first_slat_y);
 
-var slat_h1 = document.getElementById("slat1_id");
-var slat_h2 = document.getElementById("slat2_id");
-var slat_h3 = document.getElementById("slat3_id");
+ var slat_h1 = document.getElementById("slat1_id");
+ var slat_h2 = document.getElementById("slat2_id");
+ var slat_h3 = document.getElementById("slat3_id");
 
 
 var slat_objs = new Array();
@@ -79,6 +71,8 @@ draw = function(jumperObj) {
     jumper.style.top = jumperObj.i_ypos;
 
     drawSlats(slat_objs);
+//    slat_objs[1].ypos++;
+//    slat_h2.style.top = slat_objs[1].ypos;
 };
 
 update = function() {
