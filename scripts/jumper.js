@@ -5,6 +5,11 @@
  */
 function Jumper() {
     // Значение гравитации, влияющей на ускорение по ОУ
+	
+	//Очки за прыжки
+	this.point = 0;
+	
+	
     this.i_gravity = 2;
 
     // Трение объекта с воздухом,
@@ -55,8 +60,11 @@ function Jumper() {
         // Если объект пересекает ступень - задаем начальное положение, и ускорение объекту,
         // Иначе наращиваем ускорени объекту
         if(this.falling(a_slats)) {
+			var zz = jumperObj.point;
             jumperObj.i_ypos = this.o_last_slat.ypos - a_slats[oneSlat].height_of_slat - 30;
             jumperObj.b_boosting = true;
+			jumperObj.point = zz+10;
+			sPoint(jumperObj.point);
             jumperObj.i_yacc = -30;
             jumperObj.i_xacc = 0;
         } else {
