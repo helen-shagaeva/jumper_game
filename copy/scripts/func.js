@@ -1,8 +1,9 @@
-var b_keyPressed = false; // pressed or not pressed a keyboard key
+var b_keyPressed = false; //������ �� � ������ ������ �������
 
 /**
- * function to get the 
- * key code - cross-browser
+ *��������� ���� �������
+ *� ���������� ������� �� JQuery'�����
+ *��� JQuery ��� mobile
  */
 function getKeyCode(event) {
     var e = event || window.event;
@@ -10,27 +11,24 @@ function getKeyCode(event) {
 }
 
 /**
- * function to determine 
- * the size of the window
+ *���������� ������ � ������ ������
+ *��������������
  */
 function getWinSize() {
-    var sizes = {
-			'myWidth' : '0',
-			'myHeight' : '0'
-		};
+    var sizes = {myWidth:'0',myHeight:'0'};
     if (typeof( window.innerWidth ) == 'number') {
 
-        // not IE
+        //�� IE
         sizes.myWidth = window.innerWidth;
         sizes.myHeight = window.innerHeight;
     } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
 
-        // IE 6+
+        //IE 6+
         sizes.myWidth = document.documentElement.clientWidth;
         sizes.myHeight = document.documentElement.clientHeight;
     } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
 
-        // IE 4
+        //IE 4
         sizes.myWidth = document.body.clientWidth;
         sizes.myHeight = document.body.clientHeight;
     }
@@ -38,15 +36,12 @@ function getWinSize() {
 }
 
 /**
- * function to determine the 
- * coordinates of the mouse - cross-browser
+ *���������� ���������� ����
+ *��������������
  */
 function mouseShowHandler(event) {
     var e = event || window.event;
-    var mouseXY = {
-			'x' : '0',
-			'y' : '0'
-		};
+    var mouseXY = {'x':'0','y':'0'};
 
     if (e.pageX == null && e.clientX != null) {
         var html = document.documentElement
@@ -63,8 +58,8 @@ function mouseShowHandler(event) {
 
 
 /**
- * add some element
- * on our document
+ *���������� ��������� �� �������� (������)
+ *�������������� ��� �� ����� ��� :)
  */
 
 function addElement() {
@@ -80,38 +75,10 @@ function addElement() {
 }
 
 /**
- * remove some element
- * from document by its id
+ *�������� �������� �� �������� �� ������������ ��������
+ *�������������� ��� �� ����� ��� :)
  */
-function removeElement(s_id) {
-    var o_el;
-    return (o_el = document.getElementById(s_id)).parentNode.removeChild(s_id);
-}
-
-/*----------------------------------------------*/
-
-function gameStart(){
-	document.location.href="jumper.html";
-}
-
-function gameOver(){
-	document.location.href="start_menu.html";
-}
-
-function gameMsg(){
-	alert("Some Button!");
-}
-
-/*----------------------------------------------*/
-
-function drawScene(width, height, canvas) {
-	canvas.style.width = width;
-	canvas.style.height = height;
-	var o_ctx = canvas.getContext('2d');
-	o_ctx.clearRect(0, 0, width, height);
-}
-
-function clearScene(width, height, canvas) {
-	var o_ctx = canvas.getContext('2d');
-	o_ctx.clearRect(0, 0, width, height);
+function removeElement(id) {
+    var el;
+    return (el = document.getElementById(id)).parentNode.removeChild(el);
 }
