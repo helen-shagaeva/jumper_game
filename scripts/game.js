@@ -16,6 +16,11 @@ drawScene(winSizes.myWidth, winSizes.myHeight, canvas);
 var jumperObj = new Jumper();
 jumper = document.getElementById("jumper_id");
 
+//TODO Need to connect divs with slats obj's, maybe put div's in slat class (maybe in constructor).
+slat_divs = new Array();
+slat_divs[0] = document.getElementById("slat1_id");
+slat_divs[1] = document.getElementById("slat2_id");
+slat_divs[2] = document.getElementById("slat3_id");
 
 var slat_h1 = document.getElementById("slat1_id");
 var slat_h2 = document.getElementById("slat2_id");
@@ -82,7 +87,7 @@ draw = function(jumperObj) {
 };
 
 update = function() {
-    jumperObj.updateJumper(jumperObj, slat_objs);
+    jumperObj.updateJumper(jumperObj, slat_objs, slat_divs);
     draw(jumperObj);
 };
 
