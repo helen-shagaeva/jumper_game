@@ -83,17 +83,17 @@ function Jumper() {
             jumperObj.i_xacc = 0;
         } else {
             jumperObj.i_yacc += this.i_gravity;
-            if (this.b_boosting && this.i_ypos + this.i_yacc <= this.i_max_jumper_ypos) {
-                if (jumperObj.i_ypos <= this.i_max_jumper_ypos) {
-                    this.moveScene(this.i_yacc, a_slats);
-                } else {
-                    //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
-                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
-                    jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
-                }
-            } else {
+//            if (this.b_boosting && this.i_ypos + this.i_yacc <= this.i_max_jumper_ypos) {
+//                if (jumperObj.i_ypos <= this.i_max_jumper_ypos) {
+//                    this.moveScene(this.i_yacc, a_slats);
+//                } else {
+//                    //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
+//                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
+//                    jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
+//                }
+//            } else {
                 jumperObj.i_ypos += this.i_yacc;
-            }
+//            }
         }
 
 
