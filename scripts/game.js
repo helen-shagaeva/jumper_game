@@ -1,31 +1,15 @@
 //first slat values
 // Need for testing
+
 first_slat_x = 300;
 first_slat_y = 570;
 
 
 var winSizes = getWinSize();
 
-var canvas = document.getElementById('scene');
-drawScene(winSizes.myWidth, winSizes.myHeight, canvas);
-
-//jumperObj.drawJumper(canvas);
-
-
 // Setup copter element and jumper model
 var jumperObj = new Jumper();
 jumper = document.getElementById("jumper_id");
-
-//TODO Need to connect divs with slats obj's, maybe put div's in slat class (maybe in constructor).
-slat_divs = new Array();
-slat_divs[0] = document.getElementById("slat1_id");
-slat_divs[1] = document.getElementById("slat2_id");
-slat_divs[2] = document.getElementById("slat3_id");
-
-var slat_h1 = document.getElementById("slat1_id");
-var slat_h2 = document.getElementById("slat2_id");
-var slat_h3 = document.getElementById("slat3_id");
-
 
 var slat_objs = new Array();
 
@@ -33,61 +17,60 @@ getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-slatsGenerate = function(slats) {
-    var count = getRandomInt(20, 30);
-    alert(count);
-    for (var i = 0; i < count; i++) {
-        var current_slat = new Slat();
-        current_slat.width = getRandomInt(0, 50);
-        current_slat.xpos = getRandomInt(0, (screen.availWidth - current_slat.width));
-        current_slat.ypos = getRandomInt(0, (screen.availHeight - 100));
+slatsGenerate = function(slats, step) {
+    slat_objs.push(new Slat(first_slat_x, first_slat_y));
 
-        slats.push(current_slat);
+    var xcount = getRandomInt(1, (screen.availWidth/93) - 2);          // slats width
+    var ycount = getRandomInt(1, 3);
+    var part_count = screen.availHeight/step;
+    var counter = 0;
+    var first = true;
+    for (var i = 0; i < part_count; i++) {
+        for(var yn = 0; yn < ycount; yn++) {
+            if(i == 0 && first) {
+                i = 1;
+            }
+            var ypos_new_slat= getRandomInt((screen.availHeight - (step * i)), screen.availHeight - (step * (i-1)));
+            if(ypos_new_slat === undefined) {
+                yn -= 1;
+                continue;
+            }
+            for(var xn = 0; xn < xcount; xn++) {
+                var current_slat = new Slat();
+                current_slat.ypos = ypos_new_slat;
+                current_slat.xpos = getRandomInt(0, (screen.availWidth - current_slat.width));
+                if(current_slat.xpos === undefined) {
+                    xn -= 1;
+                    continue;
+                }
+                current_slat.id = counter;
+                slats.push(current_slat);
+                //current_slat.draw(current_slat.xpos, current_slat.ypos);
+                counter++;
+            }
+            first = false;
+        }
     }
+
+    var string_deb = "count: " + slats.length + "\n";
+    for(var a = 0; a < slats.length; a++) {
+        string_deb += "slat[" + a + "].x: " + slats[a].xpos + " y: " + slats[a].ypos + "\n";
+        slats[a].addToDom(slats[a].id, slats[a].xpos, slats[a].ypos);
+    }
+    alert(string_deb);
     return slats;
 };
-
- //slat_objs = slatsGenerate(slat_objs);
-
- slat_objs[0]=(new Slat(first_slat_x, first_slat_y));
- slat_objs[1]=(new Slat(first_slat_x+ 100, first_slat_y - 100));
- slat_objs[2]=(new Slat(first_slat_x+ 200, first_slat_y - 200));
-
-
-//slat_objs = slatsGenerate(slat_objs);
-
-//Initial
-
-slat_h1.style.top = first_slat_y;
-slat_h1.style.left = first_slat_x;
-
-slat_h2.style.top = first_slat_y - 100;
-slat_h2.style.left = first_slat_x + 100;
-
-slat_h3.style.top = first_slat_y - 200;
-slat_h3.style.left = first_slat_x+ 200;
-
-drawSlats = function(slats) {
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-
-    var count = slats.length;
-    for(var i = 0; i < count; i++) {
-        ctx.drawImage(slats[i].image, slats[i].xpos, slats[i].ypos);
-    }
-};
+  slat_objs = slatsGenerate(slat_objs, 290); // 290 - step!!!
 
 // Copy the "logical" object's position to the
 // element in the DOM
 draw = function(jumperObj) {
     jumper.style.left = jumperObj.i_xpos;
     jumper.style.top = jumperObj.i_ypos;
-
-    drawSlats(slat_objs);
 };
 
 update = function() {
-    jumperObj.updateJumper(jumperObj, slat_objs, slat_divs);
+    jumperObj.updateJumper(jumperObj, slat_objs);
     draw(jumperObj);
 };
 

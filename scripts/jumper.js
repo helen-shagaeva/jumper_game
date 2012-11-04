@@ -49,14 +49,15 @@ function Jumper() {
      o_ctx.drawImage(this.image, i_xpos, i_ypos);
      };
      */
-    this.moveScene = function(i_heightToMove, a_slats, a_slats_divs) {
+    this.moveScene = function(i_heightToMove, a_slats) {
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].ypos -= i_heightToMove;
-            a_slats_divs[i].style.top = a_slats[i].ypos;
+        //    var cur_div = document.getElementById("slat" + a_slats[i].id);
+        //    cur_div.style.top = a_slats[i].ypos;
         }
     }
 
-    this.updateJumper = function (jumperObj, a_slats, a_slat_divs) {
+    this.updateJumper = function (jumperObj, a_slats) {
 
         // Трение - уменьшает ускорение объекта до 0.
         if (this.i_xacc > this.i_friction) {
@@ -84,10 +85,10 @@ function Jumper() {
             jumperObj.i_yacc += this.i_gravity;
             if (this.b_boosting && this.i_ypos + this.i_yacc <= this.i_max_jumper_ypos) {
                 if (jumperObj.i_ypos <= this.i_max_jumper_ypos) {
-                    this.moveScene(this.i_yacc, a_slats, a_slat_divs);
+                    this.moveScene(this.i_yacc, a_slats);
                 } else {
                     //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
-                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats, a_slat_divs);
+                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
                     jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
                 }
             } else {
