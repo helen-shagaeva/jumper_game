@@ -52,7 +52,7 @@ slatsGenerate = function(slats, need_height) {
 
     for (var i = 0; i < count; i++) {       // мусор
         var current_slat = new Slat();
-        current_slat.ypos = getRandomInt((slats[slats.length -1].ypos - 10), winSizes.myHeight);
+        current_slat.ypos = getRandomInt((need_height - 10), winSizes.myHeight);
         current_slat.xpos = getRandomInt(0, (winSizes.myWidth - current_slat.width));
         current_slat.id = id;
         slats.push(current_slat);

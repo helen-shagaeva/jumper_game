@@ -42,6 +42,9 @@ function Jumper() {
     // Переменная, определяющая взлет и падение объекта
     this.b_boosting = false;
 
+    this.i_score = 0;
+    this.i_redraw_height = 0;
+
     /*
      this.drawJumper = function (canvas, i_xpos = this.i_xpos, i_ypos = this.i_ypos) {
      var o_ctx = canvas.getContext('2d');
@@ -50,6 +53,11 @@ function Jumper() {
      };
      */
     this.moveScene = function(i_heightToMove, a_slats) {
+        if (i_heightToMove != 0) {
+
+
+        alert(i_heightToMove);
+
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].update(i_heightToMove);
             if(a_slats[i].ypos >  winSizes.myHeight) {
@@ -58,6 +66,13 @@ function Jumper() {
         //    a_slats[i].ypos -= i_heightToMove;
         //    var cur_div = document.getElementById("slat" + a_slats[i].id);
         //    cur_div.style.top = a_slats[i].ypos;
+        }
+
+        this.i_score -= i_heightToMove;
+        this.i_redraw_height -= i_heightToMove;
+        if(this.i_redraw_height > winSizes.myHeight) {
+            slatsGenerate(a_slats, winSizes.myHeight);
+        }
         }
     }
 
