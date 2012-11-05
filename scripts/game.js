@@ -17,7 +17,7 @@ getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-slatsGenerate = function(slats, need_height) {
+slatsGenerate = function(slats, need_height, first) {
     need_height = need_height * (-1);
     var count = 25;
     var id = slats[slats.length -1].id;
@@ -49,16 +49,25 @@ slatsGenerate = function(slats, need_height) {
 
         tmp_ypos = current_slat.ypos;
         tmp_xpos = current_slat.xpos;
+
+        current_slat.color = "red";
     }
     var last_slat = slats.pop();    // запоминаю последнюю
+    var floor;
+    if(first) {
+        floor = winSizes.myHeight;
+    } else {
+        floor = 0;
+    }
 
     for (var i = 0; i < count; i++) {       // мусор
         var current_slat = new Slat();
-        current_slat.ypos = getRandomInt((need_height - 10), winSizes.myHeight);
+        current_slat.ypos = getRandomInt((need_height - 10), floor);
         current_slat.xpos = getRandomInt(0, (winSizes.myWidth - current_slat.width));
         current_slat.id = id;
         slats.push(current_slat);
         id++;
+        current_slat.color = "green";
     }
 
     slats.push(last_slat);
@@ -70,7 +79,7 @@ slatsGenerate = function(slats, need_height) {
 };
 
 slat_objs.push(new Slat(first_slat_x, first_slat_y));
-slat_objs = slatsGenerate(slat_objs, ((winSizes.myHeight * 3)));
+slat_objs = slatsGenerate(slat_objs, ((winSizes.myHeight * 3)), true);
 
 // Copy the "logical" object's position to the
 // element in the DOM

@@ -12,6 +12,7 @@ function Slat(xpos, ypos) {
     this.image.src = "images/slat.png";
     this.id;
     this.div = null;
+    this.color;
 
 	this.draw = function(x, y){
 
@@ -21,7 +22,13 @@ function Slat(xpos, ypos) {
         var divIdName = 'slat'+id;
         div.setAttribute('id',divIdName);
         var img = document.createElement("img");
-        img.src = this.image.src;
+        if(this.color == "green") {
+            img.src = "images/slat_green.png";
+        }
+        if(this.color == "red") {
+            img.src = this.image.src;
+        }
+
         div.appendChild(img);
 
         document.body.appendChild(div);

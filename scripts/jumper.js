@@ -59,7 +59,7 @@ function Jumper() {
             this.i_redraw_height -= i_heightToMove;
             if(this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
-                slatsGenerate(a_slats, winSizes.myHeight);
+                slatsGenerate(a_slats, winSizes.myHeight, false);
                 this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
