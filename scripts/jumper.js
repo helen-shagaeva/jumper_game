@@ -51,7 +51,8 @@ function Jumper() {
      */
     this.moveScene = function(i_heightToMove, a_slats) {
         for (var i = 0; i < a_slats.length; i++) {
-            a_slats[i].ypos -= i_heightToMove;
+            a_slats[i].update(i_heightToMove);
+        //    a_slats[i].ypos -= i_heightToMove;
         //    var cur_div = document.getElementById("slat" + a_slats[i].id);
         //    cur_div.style.top = a_slats[i].ypos;
         }
@@ -83,17 +84,17 @@ function Jumper() {
             jumperObj.i_xacc = 0;
         } else {
             jumperObj.i_yacc += this.i_gravity;
-//            if (this.b_boosting && this.i_ypos + this.i_yacc <= this.i_max_jumper_ypos) {
-//                if (jumperObj.i_ypos <= this.i_max_jumper_ypos) {
-//                    this.moveScene(this.i_yacc, a_slats);
-//                } else {
-//                    //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
-//                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
-//                    jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
-//                }
-//            } else {
+            if (this.b_boosting && this.i_ypos + this.i_yacc <= this.i_max_jumper_ypos) {
+                if (jumperObj.i_ypos <= this.i_max_jumper_ypos) {
+                    this.moveScene(this.i_yacc, a_slats);
+                } else {
+                    //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
+                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
+                    jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
+                }
+            } else {
                 jumperObj.i_ypos += this.i_yacc;
-//            }
+            }
         }
 
 

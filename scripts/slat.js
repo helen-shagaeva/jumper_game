@@ -4,31 +4,34 @@
  * Time: 7:55 PM
  */
 function Slat(xpos, ypos) {
-    this.height = 10;
+    this.height = 35;
     this.xpos = xpos;
     this.ypos = ypos;
     this.width = 93;
     this.image  = new Image();
     this.image.src = "images/slat.png";
     this.id;
+    this.div = null;
 
 	this.draw = function(x, y){
 
 	};
     this.addToDom = function(id, left, top) {
-        var newdiv = document.createElement('div');
+        div = document.createElement('div');
         var divIdName = 'slat'+id;
-        newdiv.setAttribute('id',divIdName);
+        div.setAttribute('id',divIdName);
         var img = document.createElement("img");
         img.src = this.image.src;
-        newdiv.appendChild(img);
+        div.appendChild(img);
 
-        document.body.appendChild(newdiv);
-        newdiv.setAttribute('style','position: absolute; left: '+ left + 'px; top: ' + top + 'px;');
+        document.body.appendChild(div);
+        div.setAttribute('style','position: absolute; left: '+ left + 'px; top: ' + top + 'px;');
+        this.div = div;
     };
-    /*
-	this.update = function(){
-		//update function of this object
+
+	this.update = function(height){
+        this.ypos -= height;
+        this.div.style.top = this.ypos;
 	};
-	*/
+
 }
