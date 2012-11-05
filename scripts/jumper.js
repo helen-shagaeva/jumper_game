@@ -55,8 +55,14 @@ function Jumper() {
     this.moveScene = function(i_heightToMove, a_slats) {
         if (i_heightToMove != 0) {
 
-
-        alert(i_heightToMove);
+            this.i_score -= i_heightToMove;
+            this.i_redraw_height -= i_heightToMove;
+            if(this.i_redraw_height > winSizes.myHeight) {
+                //alert("Go away " + a_slats.length);
+                slatsGenerate(a_slats, winSizes.myHeight);
+                this.i_redraw_height = 0;
+                //alert("after " + a_slats.length);
+            }
 
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].update(i_heightToMove);
@@ -68,11 +74,7 @@ function Jumper() {
         //    cur_div.style.top = a_slats[i].ypos;
         }
 
-        this.i_score -= i_heightToMove;
-        this.i_redraw_height -= i_heightToMove;
-        if(this.i_redraw_height > winSizes.myHeight) {
-            slatsGenerate(a_slats, winSizes.myHeight);
-        }
+
         }
     }
 
