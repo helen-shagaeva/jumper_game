@@ -52,12 +52,9 @@ slatsGenerate = function(slats, step) {
         }
     }
 
-    var string_deb = "count: " + slats.length + "\n";
     for(var a = 0; a < slats.length; a++) {
-        string_deb += "slat[" + a + "].x: " + slats[a].xpos + " y: " + slats[a].ypos + "\n";
         slats[a].addToDom(slats[a].id, slats[a].xpos, slats[a].ypos);
     }
-    alert(string_deb);
     return slats;
 };
   slat_objs = slatsGenerate(slat_objs, 290); // 290 - step!!!
