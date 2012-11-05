@@ -52,6 +52,9 @@ function Jumper() {
     this.moveScene = function(i_heightToMove, a_slats) {
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].update(i_heightToMove);
+            if(a_slats[i].ypos >  winSizes.myHeight) {
+                a_slats.splice(i, 1);
+            }
         //    a_slats[i].ypos -= i_heightToMove;
         //    var cur_div = document.getElementById("slat" + a_slats[i].id);
         //    cur_div.style.top = a_slats[i].ypos;
