@@ -17,25 +17,54 @@ getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-slatsGenerate = function(slats, step) {
-    slat_objs.push(new Slat(first_slat_x, first_slat_y));
+slatsGenerate = function(slats) {
 
+    slat_objs.push(new Slat(first_slat_x, first_slat_y));
     var count = 25;
     var id = 0;
+    var y_step = winSizes.myHeight;
+    var x_step = slats[0].width * 3;
+    var tmp_xpos = slats[0].xpos;
+    var tmp_ypos = slats[0].ypos;
+    for (var i = 0; i < count; i++) {
+
+        var current_slat = new Slat();
+        current_slat.ypos = getRandomInt(tmp_ypos, tmp_ypos - 240); // jumpers step OY (290) - 50
+        if((current_slat.ypos - tmp_ypos) > 240) { current_slat.ypos = current_slat.ypos - ((current_slat.ypos - tmp_ypos) - 240);}
+
+        var direction = getRandomInt(0, 10);
+        if((current_slat.xpos + 50) > (winSizes.myWidth - 10)) { direction = 8; }   // to left
+
+        if(direction < 5) {    // right
+            current_slat.xpos = getRandomInt(tmp_xpos, (tmp_xpos + 200));
+        } else {    // left
+            current_slat.xpos = getRandomInt((tmp_xpos - 200), tmp_xpos);
+            if(current_slat.xpos < 0) {current_slat.xpos = current_slat.xpos * (-1);}
+        }
+
+        current_slat.id = id;
+        slats.push(current_slat);
+        id++;
+
+        tmp_ypos = current_slat.ypos;
+        tmp_xpos = current_slat.xpos;
+    }
+
     for (var i = 0; i < count; i++) {
         var current_slat = new Slat();
-        current_slat.ypos = getRandomInt(-100, winSizes.myHeight);
-        current_slat.xpos = getRandomInt(0, (screen.availWidth - current_slat.width));
+        current_slat.ypos = getRandomInt((0 - winSizes.myHeight), winSizes.myHeight);
+        current_slat.xpos = getRandomInt(0, (winSizes.myWidth - current_slat.width));
         current_slat.id = id;
         slats.push(current_slat);
         id++;
     }
+
     for(var a = 0; a < slats.length; a++) {
         slats[a].addToDom(slats[a].id, slats[a].xpos, slats[a].ypos);
     }
     return slats;
 };
-  slat_objs = slatsGenerate(slat_objs, 290); // 290 - step!!!
+  slat_objs = slatsGenerate(slat_objs);
 
 // Copy the "logical" object's position to the
 // element in the DOM
