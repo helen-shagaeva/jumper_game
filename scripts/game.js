@@ -25,6 +25,7 @@ slatsGenerate = function(slats, need_height) {
     var x_step = slats[slats.length -1].width * 3;
     var tmp_xpos = slats[slats.length -1].xpos;
     var tmp_ypos = slats[slats.length -1].ypos;
+    var temp = slats.length - 1;
 
     while(tmp_ypos > need_height) {       // путь
 
@@ -62,7 +63,7 @@ slatsGenerate = function(slats, need_height) {
 
     slats.push(last_slat);
 
-    for(var a = 0; a < slats.length; a++) {
+    for(var a = temp; a < slats.length; a++) {
         slats[a].addToDom(slats[a].id, slats[a].xpos, slats[a].ypos);
     }
     return slats;
