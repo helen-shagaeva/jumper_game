@@ -18,6 +18,7 @@ getRandomInt = function(min, max) {
 };
 
 slatsGenerate = function(slats, need_height) {
+    need_height = need_height * (-1);
     var count = 25;
     var id = slats[slats.length -1].id;
     var y_step = winSizes.myHeight;
@@ -68,7 +69,7 @@ slatsGenerate = function(slats, need_height) {
 };
 
 slat_objs.push(new Slat(first_slat_x, first_slat_y));
-slat_objs = slatsGenerate(slat_objs, ((winSizes.myHeight * 3) * (-1)));
+slat_objs = slatsGenerate(slat_objs, ((winSizes.myHeight * 3)));
 
 // Copy the "logical" object's position to the
 // element in the DOM
