@@ -4,7 +4,7 @@
  * Time: 7:55 PM
  */
 function Slat(xpos, ypos) {
-    this.height = 10;
+    this.height = 35;
     this.xpos = xpos;
     this.ypos = ypos;
     this.width = 93;
