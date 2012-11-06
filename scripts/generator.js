@@ -1,4 +1,5 @@
 function Generator(width_, height_) {
+
     this.width = width_;
     this.height = height_;
 
