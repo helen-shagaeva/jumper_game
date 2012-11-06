@@ -1,12 +1,14 @@
 describe("Jumper", function() {
     var jumper;
-//    var slats;
 
     beforeEach(function() {
         jumper = new Jumper();
-//        slats = new Array();
-//        slats.push(new Slat(100, 100));
     });
+
+    movingToSlat = function(jumperObj, slat) {
+        jumperObj.i_ypos = slat.ypos - 50;
+        jumperObj.i_xpos = slat.xpos + 20;
+    };
 
     it ("should be moving to OY automatically", function() {
         var ypos = jumper.i_ypos;
@@ -32,18 +34,35 @@ describe("Jumper", function() {
 
         beforeEach(function() {
             slats = new Array();
-            first_slat = new Slat(300, 570);
+            first_slat = new Slat(first_slat_x, first_slat_y);
             slats.push(first_slat);
+
+            movingToSlat(jumper, first_slat);
+        });
+
+        it("should interact with support slat", function() {
+            var interact = false;
+            var y_diff = 0;
+            for (var i = 0; i < 100; i++) {
+                y_diff = jumper.i_ypos;
+                jumper.updateJumper(jumper, slats);
+                y_diff -= jumper.i_ypos;
+
+                if(y_diff > 0) {
+                    interact = true;
+                    break;
+                }
+            }
+
+            expect(interact).toEqual(true);
+
         });
 
         it("y position should be upper than support slat's y position", function() {
             var max_y_pos = jumper.i_ypos;
             var incr_speed = 0;
-            do {
-//                alert(jumper.i_ypos);
-//
-//                alert(incr_speed);
 
+            do {
                 incr_speed = jumper.i_ypos;
                 jumper.updateJumper(jumper, slats);
                 incr_speed -= jumper.i_ypos;
@@ -57,5 +76,32 @@ describe("Jumper", function() {
         });
     });
 
+    describe("jumper scene logic", function() {
+        var slats;
+        var first_slat;
+
+        beforeEach(function() {
+            slats = new Array();
+            first_slat = new Slat(240, 400);
+            slats.push(first_slat);
+
+            movingToSlat(jumper, first_slat);
+        });
+
+        it("jumper displaying should be greater than 300px by OY", function() {
+            var min_y_pos = 500;
+            for(var i = 0; i < 100; i++) {
+
+                jumper.updateJumper(jumper, slats);
+
+                //alert(jumper.i_ypos);
+
+                if(min_y_pos > jumper.i_ypos) {
+                    min_y_pos = jumper.i_ypos;
+                }
+            }
+            expect(min_y_pos).not.toBeLessThan(300);
+        });
+    });
 
 });

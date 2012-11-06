@@ -57,7 +57,7 @@ function Jumper() {
 
             this.i_score -= i_heightToMove;
             this.i_redraw_height -= i_heightToMove;
-            if(this.i_redraw_height > winSizes.myHeight) {
+            if(typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
                 slatsGenerate(a_slats, winSizes.myHeight, false);
                 this.i_redraw_height = 0;
@@ -66,7 +66,7 @@ function Jumper() {
 
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].update(i_heightToMove);
-            if(a_slats[i].ypos >  winSizes.myHeight) {
+            if(typeof winSizes !== "undefined" && a_slats[i].ypos >  winSizes.myHeight) {
                 a_slats.splice(i, 1);
             }
         //    a_slats[i].ypos -= i_heightToMove;
