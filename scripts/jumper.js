@@ -58,6 +58,7 @@ function Jumper() {
         if (i_heightToMove != 0) {
 
             this.i_score -= i_heightToMove;
+            sPoint(jumperObj.i_score);
             this.i_redraw_height -= i_heightToMove;
             if(typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
@@ -100,11 +101,8 @@ function Jumper() {
         // Если объект пересекает ступень - задаем начальное положение, и ускорение объекту,
         // Иначе наращиваем ускорени объекту
         if (this.falling(a_slats)) {
-		var zz = jumperObj.point;
             jumperObj.i_ypos = this.o_last_slat.ypos - a_slats[oneSlat].height - 30;
             jumperObj.b_boosting = true;
-			jumperObj.point = zz+10;
-			sPoint(jumperObj.point);
             jumperObj.i_yacc = -30;
             jumperObj.i_xacc = 0;
         } else {
