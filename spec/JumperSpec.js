@@ -40,6 +40,24 @@ describe("Jumper", function() {
             movingToSlat(jumper, first_slat);
         });
 
+        it("should fall when has'n support slat", function() {
+            jumper.i_xpos = 1000;
+            var interact = false;
+            var y_diff = 0;
+            for (var i = 0; i < 100; i++) {
+                y_diff = jumper.i_ypos;
+                jumper.updateJumper(jumper, slats);
+                y_diff -= jumper.i_ypos;
+
+                if(y_diff > 0) {
+                    interact = true;
+                    break;
+                }
+            }
+
+            expect(interact).toEqual(false);
+        });
+
         it("should interact with support slat", function() {
             var interact = false;
             var y_diff = 0;
@@ -102,6 +120,23 @@ describe("Jumper", function() {
             }
             expect(min_y_pos).not.toBeLessThan(300);
         });
+
+        it("slats move down when jumper move greater than 300px by OY", function() {
+            var slats_moving_fail = true;
+
+            var last_slat_position = 0;
+            for(var i = 0; i < 100; i++) {
+
+                last_slat_position = first_slat.ypos;
+                jumper.updateJumper(jumper, slats);
+                if(jumper.i_ypos == 300 && last_slat_position < first_slat.ypos) {
+                    slats_moving_fail = false;
+                }
+            }
+            expect(slats_moving_fail).toEqual(false);
+
+        });
+
     });
 
 });
