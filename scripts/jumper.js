@@ -59,16 +59,16 @@ function Jumper() {
 
             this.i_score -= i_heightToMove;
             this.i_redraw_height -= i_heightToMove;
-            if(this.i_redraw_height > winSizes.myHeight) {
+            if(typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
-                slatsGenerate(a_slats, winSizes.myHeight, false);
+                generator.slatsGenerate(a_slats, winSizes.myHeight, false);
                 this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
 
         for (var i = 0; i < a_slats.length; i++) {
             a_slats[i].update(i_heightToMove);
-            if(a_slats[i].ypos >  winSizes.myHeight) {
+            if(typeof winSizes !== "undefined" && a_slats[i].ypos >  winSizes.myHeight) {
                 a_slats.splice(i, 1);
             }
         //    a_slats[i].ypos -= i_heightToMove;
@@ -243,7 +243,8 @@ function Jumper() {
         /*-----------------------------------------------------------*/
 
         //exit to 'start menu'
-        if (this.explode()) {
+
+       if (typeof winSizes !== "undefined" && this.explode()) {
             alert('you loose ...');
             document.location.href = "start_menu.html";
         }
@@ -273,7 +274,7 @@ function Jumper() {
 
     //if person die
     this.explode = function () {
-        if (this.i_ypos + this.height <= winSizes.myHeight) {
+        if ( this.i_ypos + this.height <= winSizes.myHeight) {
             return false;
         }
         return true;

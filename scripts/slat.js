@@ -38,7 +38,9 @@ function Slat(xpos, ypos) {
 
 	this.update = function(height){
         this.ypos -= height;
-        this.div.style.top = this.ypos;
+        if(this.div != null) {
+            this.div.style.top = this.ypos;
+        }
 	};
 
 }
