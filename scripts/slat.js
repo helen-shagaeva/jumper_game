@@ -8,39 +8,39 @@ function Slat(xpos, ypos) {
     this.xpos = xpos;
     this.ypos = ypos;
     this.width = 93;
-    this.image  = new Image();
+    this.image = new Image();
     this.image.src = "images/slat.png";
     this.id;
     this.div = null;
     this.color;
 
-	this.draw = function(x, y){
+    this.draw = function (x, y) {
 
-	};
-    this.addToDom = function(id, left, top) {
+    };
+    this.addToDom = function (id, left, top) {
         div = document.createElement('div');
-        var divIdName = 'slat'+id;
-        div.setAttribute('id',divIdName);
+        var divIdName = 'slat' + id;
+        div.setAttribute('id', divIdName);
         var img = document.createElement("img");
-        if(this.color == "green") {
+        if (this.color == "green") {
             img.src = "images/slat_green.png";
         }
-        if(this.color == "red") {
+        if (this.color == "red") {
             img.src = this.image.src;
         }
 
         div.appendChild(img);
 
         document.body.appendChild(div);
-        div.setAttribute('style','position: absolute; left: '+ left + 'px; top: ' + top + 'px;');
+        div.setAttribute('style', 'position: absolute; left: ' + left + 'px; top: ' + top + 'px;');
         this.div = div;
     };
 
-	this.update = function(height){
+    this.update = function (height) {
         this.ypos -= height;
-        if(this.div != null) {
+        if (this.div != null) {
             this.div.style.top = this.ypos;
         }
-	};
+    };
 
 }

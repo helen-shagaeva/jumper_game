@@ -1,7 +1,7 @@
 var b_keyPressed = false; // pressed or not pressed a keyboard key
 
 /**
- * function to get the 
+ * function to get the
  * key code - cross-browser
  */
 function getKeyCode(event) {
@@ -10,14 +10,14 @@ function getKeyCode(event) {
 }
 
 /**
- * function to determine 
+ * function to determine
  * the size of the window
  */
 function getWinSize() {
     var sizes = {
-			'myWidth' : '0',
-			'myHeight' : '0'
-		};
+        'myWidth':'0',
+        'myHeight':'0'
+    };
     if (typeof( window.innerWidth ) == 'number') {
 
         // not IE
@@ -38,15 +38,15 @@ function getWinSize() {
 }
 
 /**
- * function to determine the 
+ * function to determine the
  * coordinates of the mouse - cross-browser
  */
 function mouseShowHandler(event) {
     var e = event || window.event;
     var mouseXY = {
-			'x' : '0',
-			'y' : '0'
-		};
+        'x':'0',
+        'y':'0'
+    };
 
     if (e.pageX == null && e.clientX != null) {
         var html = document.documentElement
@@ -90,28 +90,28 @@ function removeElement(s_id) {
 
 /*----------------------------------------------*/
 
-function gameStart(){
-	document.location.href="jumper.html";
+function gameStart() {
+    document.location.href = "jumper.html";
 }
 
-function gameOver(){
-	document.location.href="start_menu.html";
+function gameOver() {
+    document.location.href = "start_menu.html";
 }
 
-function gameMsg(){
-	alert("Some Button!");
+function gameMsg() {
+    alert("Some Button!");
 }
 
 /*----------------------------------------------*/
 
 function drawScene(width, height, canvas) {
-	canvas.style.width = width;
-	canvas.style.height = height;
-	var o_ctx = canvas.getContext('2d');
-	o_ctx.clearRect(0, 0, width, height);
+    canvas.style.width = width;
+    canvas.style.height = height;
+    var o_ctx = canvas.getContext('2d');
+    o_ctx.clearRect(0, 0, width, height);
 }
 
 function clearScene(width, height, canvas) {
-	var o_ctx = canvas.getContext('2d');
-	o_ctx.clearRect(0, 0, width, height);
+    var o_ctx = canvas.getContext('2d');
+    o_ctx.clearRect(0, 0, width, height);
 }

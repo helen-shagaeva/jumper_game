@@ -19,12 +19,12 @@ slat_objs = generator.slatsGenerate(slat_objs, ((winSizes.myHeight * 3)), true);
 
 // Copy the "logical" object's position to the
 // element in the DOM
-draw = function(jumperObj) {
+draw = function (jumperObj) {
     jumper.style.left = jumperObj.i_xpos;
     jumper.style.top = jumperObj.i_ypos;
 };
 
-update = function() {
+update = function () {
     jumperObj.updateJumper(jumperObj, slat_objs);
     draw(jumperObj);
 };

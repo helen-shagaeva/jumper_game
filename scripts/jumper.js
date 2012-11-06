@@ -5,7 +5,7 @@
  */
 function Jumper() {
 //Очки за прыжки
-	this.point = 0;
+    this.point = 0;
 
     this.width = 40;
     this.height = 70;
@@ -54,28 +54,28 @@ function Jumper() {
      o_ctx.drawImage(this.image, i_xpos, i_ypos);
      };
      */
-    this.moveScene = function(i_heightToMove, a_slats) {
+    this.moveScene = function (i_heightToMove, a_slats) {
         if (i_heightToMove != 0) {
 
             this.i_score -= i_heightToMove;
             sPoint(jumperObj.i_score);
             this.i_redraw_height -= i_heightToMove;
-            if(typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
+            if (typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
                 generator.slatsGenerate(a_slats, winSizes.myHeight, false);
                 this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
 
-        for (var i = 0; i < a_slats.length; i++) {
-            a_slats[i].update(i_heightToMove);
-            if(typeof winSizes !== "undefined" && a_slats[i].ypos >  winSizes.myHeight) {
-                a_slats.splice(i, 1);
+            for (var i = 0; i < a_slats.length; i++) {
+                a_slats[i].update(i_heightToMove);
+                if (typeof winSizes !== "undefined" && a_slats[i].ypos > winSizes.myHeight) {
+                    a_slats.splice(i, 1);
+                }
+                //    a_slats[i].ypos -= i_heightToMove;
+                //    var cur_div = document.getElementById("slat" + a_slats[i].id);
+                //    cur_div.style.top = a_slats[i].ypos;
             }
-        //    a_slats[i].ypos -= i_heightToMove;
-        //    var cur_div = document.getElementById("slat" + a_slats[i].id);
-        //    cur_div.style.top = a_slats[i].ypos;
-        }
 
 
         }
@@ -112,7 +112,7 @@ function Jumper() {
                     this.moveScene(this.i_yacc, a_slats);
                 } else {
                     //this.moveScene(this.i_max_jumper_ypos - jumperObj.i_ypos, a_slats, a_slat_divs);
-                    this.moveScene(this.i_yacc -(this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
+                    this.moveScene(this.i_yacc - (this.i_max_jumper_ypos - jumperObj.i_ypos), a_slats);
                     jumperObj.i_ypos += this.i_max_jumper_ypos - jumperObj.i_ypos;
                 }
             } else {
@@ -242,7 +242,7 @@ function Jumper() {
 
         //exit to 'start menu'
 
-       if (typeof winSizes !== "undefined" && this.explode()) {
+        if (typeof winSizes !== "undefined" && this.explode()) {
             alert('you loose ...');
             document.location.href = "start_menu.html";
         }
@@ -272,7 +272,7 @@ function Jumper() {
 
     //if person die
     this.explode = function () {
-        if ( this.i_ypos + this.height <= winSizes.myHeight) {
+        if (this.i_ypos + this.height <= winSizes.myHeight) {
             return false;
         }
         return true;
