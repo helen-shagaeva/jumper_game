@@ -15,6 +15,8 @@ jumper = document.getElementById("jumper_id");
 var slat_objs = new Array();
 
 slat_objs.push(new Slat(first_slat_x, first_slat_y));
+slat_objs[0].color="red";
+
 slat_objs = generator.slatsGenerate(slat_objs, ((winSizes.myHeight * 3)), true);
 
 // Copy the "logical" object's position to the
