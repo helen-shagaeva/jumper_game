@@ -238,7 +238,8 @@ function Jumper() {
         /*-----------------------------------------------------------*/
 
         //exit to 'start menu'
-        if (this.explode()) {
+
+       if (typeof winSizes !== "undefined" && this.explode()) {
             alert('you loose ...');
             document.location.href = "start_menu.html";
         }
@@ -268,7 +269,7 @@ function Jumper() {
 
     //if person die
     this.explode = function () {
-        if (this.i_ypos + this.height <= winSizes.myHeight) {
+        if ( this.i_ypos + this.height <= winSizes.myHeight) {
             return false;
         }
         return true;
