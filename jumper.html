@@ -21,10 +21,25 @@
 	
 	<body>
 		<div id="jumper_id"></div>
+		<canvas id="canvas">:(
+            
+            </canvas>
 
 		<script src="scripts/func.js" type="text/javascript"></script>
         <script src="scripts/jumper.js" type="text/javascript"></script>
         <script src="scripts/slat.js" type="text/javascript"></script>
 		<script src="scripts/game.js" type="text/javascript"></script>
+				<script>
+		var can = document.getElementById("canvas");
+		var zz = can.getContext("2d");
+		zz.font="30px Arial";
+		function sPoint(pt)
+		{
+			zz.fillStyle = "#00F";
+			zz.fillRect(11,11,100,50);
+			zz.strokeText(pt,20,40);
+			zz.strokeStyle = "#000";
+			}
+		</script>
 	</body>
 </html>
