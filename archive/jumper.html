@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Jumper game</title>
+		<style>
+            body {
+                margin:0px;
+                padding:0px;
+                background-image: url('images/background.png');
+            }
+            #jumper_id {
+                position: absolute;
+                left: 300px;
+                top: 500px;
+                width: 40px;
+                height: 70px;
+                background-image: url('images/human.png');
+                /*border:2px solid #000;*/
+            }
+		</style>
+    </head>
+	
+	<body>
+		<div id="jumper_id"></div>
+		<canvas id="canvas">:(
+            
+            </canvas>
+
+
+				<script>
+		var can = document.getElementById("canvas");
+		var zz = can.getContext("2d");
+		zz.font="30px Arial";
+		function sPoint(pt)
+		{
+			zz.fillStyle = "#00F";
+			zz.fillRect(11,11,100,50);
+			zz.strokeText(pt,20,40);
+			zz.strokeStyle = "#000";
+			}
+		</script>
+
+        <script src="scripts/func.js" type="text/javascript"></script>
+        <script src="scripts/jumper.js" type="text/javascript"></script>
+        <script src="scripts/slat.js" type="text/javascript"></script>
+        <script src="scripts/generator.js" type="text/javascript"></script>
+        <script src="scripts/game.js" type="text/javascript"></script>
+	</body>
+</html>
