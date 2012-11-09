@@ -1,14 +1,20 @@
+var i_screenHeight = getWinSize().myHeight;
+var i_screenWidth = getWinSize().myWidth;
 
 var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var drawer = new Drawer(context);
+
+canvas.offsetTop = (i_screenHeight - canvas.height) / 2;
+canvas.offsetLeft = (i_screenWidth - canvas.width) /2;
+var drawer = new Drawer(canvas);
 
 var backgroundImg = new Image();
 backgroundImg.src = "../img/background.png";
-
 backgroundImg.onload = function() {
     drawer.drawBackground(backgroundImg);
-};
-drawer.drawBackgroun;
+}
 
-drawer.
+update = function() {
+
+};
+
+setInterval(update, 50);
