@@ -58,7 +58,11 @@ function Jumper() {
         if (i_heightToMove != 0) {
 
             this.i_score -= i_heightToMove;
-            sPoint(jumperObj.i_score);
+
+            if (typeof winSizes !== "undefined") {
+                sPoint(jumperObj.i_score);
+            }
+
             this.i_redraw_height -= i_heightToMove;
             if (typeof winSizes !== "undefined" && this.i_redraw_height > winSizes.myHeight) {
                 //alert("Go away " + a_slats.length);
