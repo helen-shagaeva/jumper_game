@@ -17,6 +17,15 @@ function Drawer(canvas) {
     };
 
     this.drawJumper = function (jumper) {
-      this.context.drawImage(jumper.image, jumper.i_xPos, jumper.i_yPos, jumper.image.width, jumper.image.height);
+        this.context.drawImage(jumper.image, jumper.i_xPos, jumper.i_yPos, jumper.image.width, jumper.image.height);
+    };
+
+    this.drawSlats = function (util, slats) {
+        // todo draw image,s slat for each slats
+
+        for (var i = 0; i < slats.length; i++) {
+            this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
+                util.images[slats[i].slatType].width, util.images[slats[i].slatType].height);
+        }
     };
 }
