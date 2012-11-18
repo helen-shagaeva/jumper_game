@@ -35,8 +35,6 @@ function Util() {
             this.images[i].onload = function() {
                 if(++loadedImages >= this.i_typesOfImages) {
                     funcAfterLoad();
-                    //func2();
-                    //alert("after load");
                 }
             };
             this.images[i].src = "../img/slat_type_" + i + ".png";
@@ -53,6 +51,121 @@ function Util() {
         return this.images[slat.slatType].height;
     };
 
-    //this.getSlatHeight(slat);
-    //this.getSlatWidth(slat);
+    this.movingControll = function(jumperObj) {
+        document.onmousedown = function (event) {
+            b_keyPressed = true;
+
+            if (mouseShowHandler(event).x < winSizes.myWidth / 2 && b_keyPressed) {
+
+                // Проверяем не превысил ли обект скорость по ОХ
+                if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+                    jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+                } else {
+                    jumperObj.i_xAcc -= jumperObj.i_yShift;
+                }
+                if (jumperObj.i_xPos <= -20) {
+                    jumperObj.i_xPos = winSizes.myWidth - 40;
+                }
+
+            }
+            else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
+
+                // Проверяем не превысил ли обект скорость по ОХ
+                if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+                    jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+                } else {
+                    jumperObj.i_xAcc += jumperObj.i_yShift;
+                }
+
+                if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                    jumperObj.i_xPos = -40;
+                }
+            }
+        }
+
+
+        document.onmouseup = function (event) {
+            b_keyPressed = false;
+        }
+
+        document.onkeypress = function (event) {
+            if (b_keyPressed) {
+
+                switch (parseInt(getKeyCode(event))) {
+                    case 37:    // left
+
+                        // Проверяем не превысил ли обект скорость по ОХ
+                        if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+                            jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+                        } else {
+                            jumperObj.i_xAcc -= jumperObj.i_yShift;
+                        }
+                        if (jumperObj.i_xPos <= -20) {
+                            jumperObj.i_xPos = winSizes.myWidth - 40;
+                        }
+                        break;
+                    case 39:    // right
+
+                        // Проверяем не превысил ли обект скорость по ОХ
+                        if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+                            jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+                        } else {
+                            jumperObj.i_xAcc += jumperObj.i_yShift;
+                        }
+                        if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                            jumperObj.i_xPos = -40;
+                        }
+                        break;
+                }
+
+            }
+        }
+
+        document.onkeydown = function (event) {
+            switch (parseInt(getKeyCode(event))) {
+                case 37:    // left
+                    b_keyPressed = true;
+
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc -= jumperObj.i_yShift;
+                    }
+                    if (jumperObj.i_xPos <= -20) {
+                        jumperObj.i_xPos = winSizes.myWidth - 40;
+                    }
+                    break;
+                case 39:    // right
+                    b_keyPressed = true;
+
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc += jumperObj.i_yShift;
+                    }
+                    if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                        jumperObj.i_xPos = -40;
+                    }
+                    break;
+            }
+        }
+
+        document.onkeyup = function (event) {
+            switch (parseInt(getKeyCode(event))) {
+                case 37:    // left
+                    b_keyPressed = false;
+                    break;
+                case 39:    // right
+                    b_keyPressed = false;
+                    break;
+            }
+        }
+    };
+
+    function getKeyCode(event) {
+        var e = event || window.event;
+        return keyCode = e.which || e.KeyCode;
+    }
 }

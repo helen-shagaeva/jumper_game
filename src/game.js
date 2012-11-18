@@ -27,6 +27,7 @@ update = function() {
     drawer.drawBackground(backgroundImg);
     drawer.drawSlats(util, slats);
     drawer.drawJumper(jumper);
+    util.movingControll(jumper);
 };
 
 var backgroundImg = new Image();

@@ -11,6 +11,8 @@ function Jumper(canvas, util) {
     this.b_boosting = false;
     this.o_lastSlat = null;
     this.util = util;
+    this.i_yShift = 6;
+    this.i_yMaxacceleration = 10;
 
 //    this.moveRight();
 //    this.moveLeft();

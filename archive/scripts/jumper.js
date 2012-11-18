@@ -23,7 +23,7 @@ function Jumper() {
     this.i_friction = 1;
 
     // Максимальная скорость движения объекта по ОХ
-    this.i_yMaxacceleration = 10;
+    this.i_yMaxacceleration = 10;this.i_yMaxacceleration = 10;
 
     // Значение изменения скорости по ОХ
     this.i_yShift = 6;
