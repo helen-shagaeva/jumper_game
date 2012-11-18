@@ -35,11 +35,23 @@ function Util() {
             this.images[i].onload = function() {
                 if(++loadedImages >= this.i_typesOfImages) {
                     funcAfterLoad();
+                    //func2();
+                    //alert("after load");
                 }
             };
             this.images[i].src = "../img/slat_type_" + i + ".png";
         }
-    }
+    };
+
+
+    //This method can change
+    this.getSlatWidth = function(slat) {
+        return this.images[slat.slatType].width;
+    };
+
+    this.getSlatHeight = function(slat) {
+        return this.images[slat.slatType].height;
+    };
 
     //this.getSlatHeight(slat);
     //this.getSlatWidth(slat);
