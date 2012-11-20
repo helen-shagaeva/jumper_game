@@ -1,3 +1,25 @@
+/*--------------*/
+function mouseShowHandler(event) {
+    var e = event || window.event;
+    var mouseXY = {
+        'x':'0',
+        'y':'0'
+    };
+
+    if (e.pageX == null && e.clientX != null) {
+        var html = document.documentElement
+        var body = document.body
+
+        e.pageX = e.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0)
+        e.pageY = e.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0)
+    }
+
+    mouseXY.x = e.pageX
+    mouseXY.y = e.pageY
+    return mouseXY;
+}
+/*--------------*/
+
 function getWinSize() {
     var sizes = {
         'myWidth':'0',
@@ -54,7 +76,9 @@ function Util() {
     this.movingControll = function(jumperObj) {
         document.onmousedown = function (event) {
             b_keyPressed = true;
-
+			
+			var winSizes = getWinSize();
+			
             if (mouseShowHandler(event).x < winSizes.myWidth / 2 && b_keyPressed) {
 
                 // Проверяем не превысил ли обект скорость по ОХ
@@ -162,6 +186,47 @@ function Util() {
                     break;
             }
         }
+		/*--------------*/
+		$("document").bind('touchstart',function(event){
+			if (event.targetTouches.length == 1) {
+				var touch = event.targetTouches[0];
+				var winSizes = getWinSize();
+				b_keyPressed = true;
+				// Place element where the finger is
+				//console.log(touch.pageX);
+				if (touch.pageX < winSizes.myWidth / 2 && b_keyPressed) {
+
+					// Проверяем не превысил ли обект скорость по ОХ
+					if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+						jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+					} else {
+						jumperObj.i_xAcc -= jumperObj.i_yShift;
+					}
+					if (jumperObj.i_xPos <= -20) {
+						jumperObj.i_xPos = winSizes.myWidth - 40;
+					}
+
+				}
+				else if (touch.pageX > winSizes.myWidth / 2 && b_keyPressed) {
+
+					// Проверяем не превысил ли обект скорость по ОХ
+					if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+						jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+					} else {
+						jumperObj.i_xAcc += jumperObj.i_yShift;
+					}
+
+					if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+						jumperObj.i_xPos = -40;
+					}
+				}
+			}
+		});
+		
+		$("document").bind('touchend',function(event){
+			b_keyPressed = false;
+		});
+		/*--------------*/
     };
 
     function getKeyCode(event) {
