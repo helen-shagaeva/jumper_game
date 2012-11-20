@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <script src="../src/initialScript.js" type="text/javascript"></script>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="800"></canvas>
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+
+    <script src="../src/Util.js" type="text/javascript"></script>
+    <script src="../src/Jumper.js" type="text/javascript"></script>
+    <script src="../src/Drawer.js" type="text/javascript"></script>
+    <script src="../src/Slat.js" type="text/javascript" ></script>
+    <script src="../src/SlatGenerator.js" type="text/javascript" ></script>
+    <script src="../src/game.js" type="text/javascript"></script>
+	
+	<script>
+		/*--------------*/
+		//disable default event to touchmove - scroll page
+		$(document).ready(function(){
+			document.body.addEventListener('touchmove', function(event) {
+				event.preventDefault();
+			}, false);
+		});
+		/*--------------*/
+	</script>
+	
+</body>
+</html>
