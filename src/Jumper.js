@@ -14,14 +14,12 @@ function Jumper(canvas, util) {
     this.i_yShift = 6;
     this.i_yMaxacceleration = 10;
 
+    this.i_jumperWidth = 0;
+    this.i_jumperHeight = 0;
+
 //    this.moveRight();
 //    this.moveLeft();
 
-    this.image = new Image();
-    this.image.src = "../img/human.png";
-
-    this.i_jumperWidth = this.image.width;
-    this.i_jumperHeight = this.image.height;
 
 
     // this.drawBackground = function (backgroundImg) {

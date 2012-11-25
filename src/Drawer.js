@@ -16,8 +16,11 @@ function Drawer(canvas) {
 
     };
 
-    this.drawJumper = function (jumper) {
-        this.context.drawImage(jumper.image, jumper.i_xPos, jumper.i_yPos, jumper.image.width, jumper.image.height);
+    this.drawJumper = function (jumper, util) {
+        if (util.jumperImage != null) {
+
+            this.context.drawImage(util.jumperImage, jumper.i_xPos, jumper.i_yPos, util.jumperImage.width, util.jumperImage.height);
+        }
     };
 
     this.drawSlats = function (util, slats) {

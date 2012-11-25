@@ -26,14 +26,14 @@ update = function() {
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     drawer.drawBackground(backgroundImg);
     drawer.drawSlats(util, slats);
-    drawer.drawJumper(jumper);
+    drawer.drawJumper(jumper, util);
     util.movingControll(jumper);
 };
 
 var backgroundImg = new Image();
 backgroundImg.src = "../img/background.png";
 backgroundImg.onload = function() {
-    util.loadImage(setInterval(update, 50));
+    util.loadImage(setInterval(update, 50), jumper, util);
 };
 
 
