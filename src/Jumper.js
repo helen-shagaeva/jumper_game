@@ -51,10 +51,10 @@ function Jumper(canvas, util) {
             jumperObj.i_yAcc += jumperObj.i_gravity;
             if (jumperObj.b_boosting && jumperObj.i_yPos + jumperObj.i_yAcc <= jumperObj.i_maxJumperYPos) {
                 if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
-                    this.moveScene(jumperObj.i_yAcc, a_slats);
+  //                  this.moveScene(jumperObj.i_yAcc, a_slats);
                 } else {
                     //this.moveScene(this.i_maxJumperYPos - jumperObj.i_yPos, a_slats, a_slat_divs);
-                    this.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats);
+  //                  this.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats);
                     jumperObj.i_yPos += jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
                 }
             } else {

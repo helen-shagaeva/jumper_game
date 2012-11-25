@@ -73,6 +73,8 @@ function Util() {
         return this.images[slat.slatType].height;
     };
 
+    var b_keyPressed = false;
+
     this.movingControll = function(jumperObj) {
         document.onmousedown = function (event) {
             b_keyPressed = true;
@@ -113,6 +115,7 @@ function Util() {
         }
 
         document.onkeypress = function (event) {
+            var winSizes = getWinSize();
             if (b_keyPressed) {
 
                 switch (parseInt(getKeyCode(event))) {
@@ -146,6 +149,7 @@ function Util() {
         }
 
         document.onkeydown = function (event) {
+            var winSizes = getWinSize();
             switch (parseInt(getKeyCode(event))) {
                 case 37:    // left
                     b_keyPressed = true;
