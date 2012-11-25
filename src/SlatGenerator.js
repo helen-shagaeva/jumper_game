@@ -11,8 +11,6 @@ function SlatGenerator(canvas, util) {
     //    slats.push(new Slat(300, 400, 0, this.util));
     //    slats.push(new Slat(300, 500, 0, this.util));
 
-        generatedHeight *= -1;
-
         var jump_height = 290;
         var jump_width = 50;
 
@@ -22,6 +20,14 @@ function SlatGenerator(canvas, util) {
         var count = 5; // для мусора
 
         var last = slats[slats.length-1];
+
+        // ToDo calculate generate height
+        if(first) {
+           generatedHeight *= -1;
+        } else {
+            generatedHeight = last.i_ySlatPos - generatedHeight;
+        }
+
 
 
         while(last.i_ySlatPos > generatedHeight) {
@@ -92,10 +98,10 @@ function SlatGenerator(canvas, util) {
 
         slats.push(last);
 
-//        var str = "";
-//        for(slat in slats) {
-//           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
-//        }
-//        alert(str);
+        var str = "";
+        for(slat in slats) {
+           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
+        }
+       alert(str);
     }
 }
