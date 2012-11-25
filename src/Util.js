@@ -48,9 +48,14 @@ function getWinSize() {
 function Util() {
     this.i_typesOfImages = 1;
     this.images = new Array();
+    this.jumperImage = null;
 
-    this.loadImage = function(funcAfterLoad) {
+    this.loadImage = function(funcAfterLoad, jumper, util) {
+        this.loadSlats(funcAfterLoad);
+        this.loadJumper(jumper, util);
+    };
 
+    this.loadSlats = function(funcAfterLoad) {
         var loadedImages = 0;
         for (var i=0; i<util.i_typesOfImages; i++) {
             this.images[i] = new Image();
@@ -61,6 +66,19 @@ function Util() {
             };
             this.images[i].src = "../img/slat_type_" + i + ".png";
         }
+
+    };
+
+    this.loadJumper = function(jumper, util) {
+        var img = new Image();
+        img.onload = function() {
+            alert("asdfasdf");
+            jumper.i_jumperWidth = img.width;
+            jumper.i_jumperHeight = img.height;
+            util.jumperImage = img;
+
+        };
+        img.src = "../img/human.png";
     };
 
 
