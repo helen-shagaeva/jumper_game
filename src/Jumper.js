@@ -79,13 +79,13 @@ function Jumper(canvas, util) {
     this.preMoving = function(jumperObj, scene, a_slats, moveHeight) {
        // alert("premoving");
         jumperObj.i_score -= moveHeight;
-        jumperObj.i_regenerateHeight -= jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
-        var isRegenerate = false
+        jumperObj.i_regenerateHeight += jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
+        var isRegenerate = false;
         if(jumperObj.i_regenerateHeight > scene.regenerateLimit) {
             isRegenerate = true;
             jumperObj.i_regenerateHeight = 0;
         }
-        scene.moveScene(moveHeight, a_slats, isRegenerate);
+        scene.moveScene(moveHeight, a_slats, isRegenerate, this.i_score);
     };
 
 

@@ -39,15 +39,27 @@ function SlatGenerator(canvas, util) {
 
             if (direction < 5) {    // right
                 x = this.getRandomInt(last.i_xSlatPos, (last.i_xSlatPos + 200));
+                if(x > (this.canvas.width - 93)) {
+                    x = x - (last.i_xSlatPos + 200);
+                }
+                if (x < 0) {
+                    x = x * (-1);
+                }
             } else {    // left
                 x = this.getRandomInt((last.i_xSlatPos - 200), last.i_xSlatPos);
                 if (x < 0) {
                     x = x * (-1);
                 }
+                if(x > (this.canvas.width - 93)) {
+                    x = x - (last.i_xSlatPos + 200);
+                }
             }
 
             var newSlat = new Slat(x, y, 0);
             slats.push(newSlat);
+
+            newSlat.t = "main";
+
             last = newSlat;
         }
 
@@ -59,16 +71,30 @@ function SlatGenerator(canvas, util) {
         for (var i = 0; i < count; i++) {       // мусор
 
             var y = this.getRandomInt((generatedHeight - 10), floor);
+            if(y > floor) {
+                y = y - floor;
+            }
+            if(y < (generatedHeight - 10))  {
+                y = y + ((generatedHeight - 10) - y);
+            }
             var x = this.getRandomInt(0, (this.canvas.width - 93)); //this.util.getSlatWidth(last)));
+            if(x > (this.canvas.width - 93)) {
+                x = x - (this.canvas.width - 93);
+            }
+            if (x < 0) {
+                x = x * (-1);
+            }
             var newSlat = new Slat(x, y, 0);
             slats.push(newSlat);
+
+            newSlat.t = "musor";
         }
 
         slats.push(last);
 
 //        var str = "";
 //        for(slat in slats) {
-//           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + "\n";
+//           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
 //        }
 //        alert(str);
     }

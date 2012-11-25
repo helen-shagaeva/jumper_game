@@ -1,7 +1,7 @@
 function Scene(slatGenerator) {
     this.slatGenerator = slatGenerator;
     this.regenerateLimit = getWinSize().myHeight;
-    this.moveScene = function (i_heightToMove, a_slats, is_need_toRegenerate) {
+    this.moveScene = function (i_heightToMove, a_slats, is_need_toRegenerate, score) {
         // TODO find out where view points
 //            if (typeof winSizes !== "undefined") {
 //                sPoint(jumperObj.i_score);
@@ -9,7 +9,7 @@ function Scene(slatGenerator) {
 
             if (is_need_toRegenerate) {
                 //alert("Go away " + a_slats.length);
-                generator.slatsGenerate(a_slats, winSizes.myHeight, false);
+                generator.slatsGenerate(a_slats, winSizes.myHeight, score, false);
                 //this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
