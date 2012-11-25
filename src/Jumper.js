@@ -4,9 +4,9 @@ function Jumper(canvas, util) {
     this.i_xAcc = 0;
     this.i_yAcc = 3;
     this.i_gravity = 2;
-    this.i_maxJumperYPos = 0; //canvas.height * 0.5;
+    this.i_maxJumperYPos = canvas.height * 0.5;
     this.i_score = 0;
-    this.i_regenerateScore = 0;
+    this.i_regenerateHeight = 0;
     this.i_friction = 1;
     this.b_boosting = false;
     this.o_lastSlat = null;
@@ -25,7 +25,7 @@ function Jumper(canvas, util) {
     // this.drawBackground = function (backgroundImg) {
 
     //todo add movescene function to updateJumper args
-    this.updateJumper = function (jumperObj, a_slats) {
+    this.updateJumper = function (jumperObj, a_slats, scene) {
         if (jumperObj.i_xAcc > jumperObj.i_friction) {
             jumperObj.i_xAcc -= jumperObj.i_friction;
         } else if (jumperObj.i_xAcc < -jumperObj.i_friction) {
@@ -48,18 +48,44 @@ function Jumper(canvas, util) {
         } else {
             jumperObj.i_yAcc += jumperObj.i_gravity;
             if (jumperObj.b_boosting && jumperObj.i_yPos + jumperObj.i_yAcc <= jumperObj.i_maxJumperYPos) {
-                if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
+                if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos)
+                {
+                    jumperObj.preMoving(jumperObj, scene, a_slats, jumperObj.i_yAcc);
+//                    this.i_score -= jumperObj.i_yAcc;
+//                    i_regenerateHeight -= jumperObj.i_yAcc;
   //                  this.moveScene(jumperObj.i_yAcc, a_slats);
                 } else {
                     //this.moveScene(this.i_maxJumperYPos - jumperObj.i_yPos, a_slats, a_slat_divs);
   //                  this.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats);
+//                    this.i_score -= jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos);
                     jumperObj.i_yPos += jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
+                    jumperObj.preMoving(jumperObj, scene, a_slats, jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos));
+//                    i_regenerateHeight -= jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
+//                    var isRegenerate = false
+//                    if(i_regenerateHeight > scene.regenerateLimit) {
+//                        isRegenerate = true;
+//                        jumperObj.i_regenerateHeight = 0;
+//                    }
+//
+//                    scene.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats, isRegenerate);
                 }
             } else {
                 jumperObj.i_yPos += jumperObj.i_yAcc;
             }
         }
 
+    };
+
+    this.preMoving = function(jumperObj, scene, a_slats, moveHeight) {
+       // alert("premoving");
+        jumperObj.i_score -= moveHeight;
+        jumperObj.i_regenerateHeight -= jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
+        var isRegenerate = false
+        if(jumperObj.i_regenerateHeight > scene.regenerateLimit) {
+            isRegenerate = true;
+            jumperObj.i_regenerateHeight = 0;
+        }
+        scene.moveScene(moveHeight, a_slats, isRegenerate);
     };
 
 

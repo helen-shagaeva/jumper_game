@@ -5,5 +5,7 @@ function Slat(xpos, ypos, slatType) {
     // this.move;
     this.slatType = slatType;
 
-    // this.shiftSlat;
+    this.shiftSlat = function(height) {
+        this.i_ySlatPos -= height;
+    };
 };

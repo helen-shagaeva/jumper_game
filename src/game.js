@@ -9,8 +9,10 @@ canvas.width = i_screenHeight / (16/10);
 var slats = new Array();
 var drawer = new Drawer(canvas);
 var util = new Util();
-var jumper = new Jumper(canvas, util);
 var generator = new SlatGenerator(canvas, util);
+var scene = new Scene(generator);
+var jumper = new Jumper(canvas, util, scene);
+
 
 slats.push(new Slat(jumper.i_xPos - 10, jumper.i_yPos + 100, 0));
 generator.generateSlats(slats, 0, 0);
@@ -22,7 +24,7 @@ generator.generateSlats(slats, 0, 0);
 
 
 update = function() {
-    jumper.updateJumper(jumper, slats);
+    jumper.updateJumper(jumper, slats, scene);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     drawer.drawBackground(backgroundImg);
     drawer.drawSlats(util, slats);

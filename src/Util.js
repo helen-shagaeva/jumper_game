@@ -72,7 +72,6 @@ function Util() {
     this.loadJumper = function(jumper, util) {
         var img = new Image();
         img.onload = function() {
-            alert("asdfasdf");
             jumper.i_jumperWidth = img.width;
             jumper.i_jumperHeight = img.height;
             util.jumperImage = img;
