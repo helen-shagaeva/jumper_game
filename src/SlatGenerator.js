@@ -6,7 +6,7 @@ function SlatGenerator(canvas, util) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    this.generateSlats = function(slats, generatedHeight, score) {
+    this.generateSlats = function(slats, generatedHeight, score, first) {
     //    slats.push(new Slat(300, 300, 0, this.util));
     //    slats.push(new Slat(300, 400, 0, this.util));
     //    slats.push(new Slat(300, 500, 0, this.util));
@@ -50,5 +50,19 @@ function SlatGenerator(canvas, util) {
             slats.push(newSlat);
             last = newSlat;
         }
+        var floor = this.canvas.height;
+        if(!first) {
+            floor = 0;
+        }
+        for (var i = 0; i < count; i++) {       // мусор
+
+            var y = this.getRandomInt((generatedHeight - 10), floor);
+            var x = this.getRandomInt(0, (this.canvas.width - this.util.getSlatWidth(last)));
+
+            var newSlat = new Slat(x, y, 0);
+            slats.push(newSlat);
+        }
+
+        slats.push(last);
     }
 }

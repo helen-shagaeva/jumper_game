@@ -67,12 +67,16 @@ function Util() {
             this.images[i].src = "../img/slat_type_" + i + ".png";
         }
 
+        var str = "";
+        for(img in this.images) {
+            str += img.width + " ";
+        }
+        alert(str);
     };
 
     this.loadJumper = function(jumper, util) {
         var img = new Image();
         img.onload = function() {
-            alert("asdfasdf");
             jumper.i_jumperWidth = img.width;
             jumper.i_jumperHeight = img.height;
             util.jumperImage = img;
@@ -84,11 +88,11 @@ function Util() {
 
     //This method can change
     this.getSlatWidth = function(slat) {
-        return this.images[slat.slatType].width;
+       return this.images[slat.slatType].width; //93
     };
 
     this.getSlatHeight = function(slat) {
-        return this.images[slat.slatType].height;
+       return this.images[slat.slatType].height; //40
     };
 
     var b_keyPressed = false;
