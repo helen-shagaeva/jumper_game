@@ -84,9 +84,7 @@ function Util() {
 
     //This method can change
     this.getSlatWidth = function(slat) {
-       alert(this.images[slat.slatType].width);
         return this.images[slat.slatType].width; //93
-
     };
 
     this.getSlatHeight = function(slat) {

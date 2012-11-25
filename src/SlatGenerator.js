@@ -19,7 +19,7 @@ function SlatGenerator(canvas, util) {
         var canvas_height = 1300;
         var canvas_width = 730;
 
-        var count = 25; // для мусора
+        var count = 5; // для мусора
 
         var last = slats[slats.length-1];
 
@@ -50,19 +50,26 @@ function SlatGenerator(canvas, util) {
             slats.push(newSlat);
             last = newSlat;
         }
+
         var floor = this.canvas.height;
         if(!first) {
             floor = 0;
         }
+
         for (var i = 0; i < count; i++) {       // мусор
 
             var y = this.getRandomInt((generatedHeight - 10), floor);
-            var x = this.getRandomInt(0, (this.canvas.width - this.util.getSlatWidth(last)));
-
+            var x = this.getRandomInt(0, (this.canvas.width - 93)); //this.util.getSlatWidth(last)));
             var newSlat = new Slat(x, y, 0);
             slats.push(newSlat);
         }
 
         slats.push(last);
+
+//        var str = "";
+//        for(slat in slats) {
+//           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + "\n";
+//        }
+//        alert(str);
     }
 }
