@@ -9,8 +9,10 @@ canvas.width = i_screenHeight / (16/10);
 var slats = new Array();
 var drawer = new Drawer(canvas);
 var util = new Util();
-var jumper = new Jumper(canvas, util);
 var generator = new SlatGenerator(canvas, util);
+var scene = new Scene(generator);
+var jumper = new Jumper(canvas, util, scene);
+
 
 // TODO move canvas to center of the screen
 //canvas.offsetTop = (i_screenHeight - canvas.height) / 2;
@@ -18,7 +20,7 @@ var generator = new SlatGenerator(canvas, util);
 
 
 update = function() {
-    jumper.updateJumper(jumper, slats);
+    jumper.updateJumper(jumper, slats, scene);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     drawer.drawBackground(backgroundImg);
     drawer.drawSlats(util, slats);
