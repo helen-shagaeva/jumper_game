@@ -35,7 +35,7 @@ backgroundImg.onload = function() {
 };
 
 slats.push(new Slat(jumper.i_xPos - 10, jumper.i_yPos + 100, 0));
-generator.generateSlats(slats, 0, 0, true);
+generator.generateSlats(slats,getWinSize().myHeight * 3, 0, true);
 
 
 

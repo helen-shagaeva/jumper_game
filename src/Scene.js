@@ -9,7 +9,7 @@ function Scene(slatGenerator) {
 
             if (is_need_toRegenerate) {
                 //alert("Go away " + a_slats.length);
-                generator.slatsGenerate(a_slats, winSizes.myHeight, score, false);
+                generator.slatsGenerate(a_slats, winSizes.myHeight * 2, score, false);
                 //this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
