@@ -51,27 +51,23 @@ function Util() {
     this.jumperImage = null;
 
     this.loadImage = function(funcAfterLoad, jumper, util) {
-        this.loadSlats(funcAfterLoad);
+        this.loadSlats(funcAfterLoad, util);
         this.loadJumper(jumper, util);
     };
 
-    this.loadSlats = function(funcAfterLoad) {
+    this.loadSlats = function(funcAfterLoad, util) {
         var loadedImages = 0;
         for (var i=0; i<util.i_typesOfImages; i++) {
-            this.images[i] = new Image();
-            this.images[i].onload = function() {
-                if(++loadedImages >= this.i_typesOfImages) {
+            util.images[i] = new Image();
+            util.images[i].onload = function() {
+                if(++loadedImages >= util.i_typesOfImages) {
                     funcAfterLoad();
                 }
             };
-            this.images[i].src = "../img/slat_type_" + i + ".png";
+            util.images[i].src = "../img/slat_type_" + i + ".png";
         }
 
-        var str = "";
-        for(img in this.images) {
-            str += img.width + " ";
-        }
-        alert(str);
+
     };
 
     this.loadJumper = function(jumper, util) {
@@ -88,7 +84,9 @@ function Util() {
 
     //This method can change
     this.getSlatWidth = function(slat) {
-       return this.images[slat.slatType].width; //93
+       alert(this.images[slat.slatType].width);
+        return this.images[slat.slatType].width; //93
+
     };
 
     this.getSlatHeight = function(slat) {
