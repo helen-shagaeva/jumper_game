@@ -6,6 +6,11 @@ var canvas = document.getElementById('canvas');
 canvas.height = i_screenHeight;
 canvas.width = i_screenHeight / (16/10);
 
+// Данные координаты пересчитываются в зависимости 
+// от предопределенных стилей или от расчитаных
+var i_canvasHeight = getCanvasSize("canvas").myHeight;
+var i_canvasWidth = getCanvasSize("canvas").myWidth;
+
 var slats = new Array();
 var drawer = new Drawer(canvas);
 var util = new Util();
@@ -36,8 +41,3 @@ backgroundImg.onload = function() {
 
 slats.push(new Slat(jumper.i_xPos - 10, jumper.i_yPos + 100, 0));
 generator.generateSlats(slats,getWinSize().myHeight * 3, 0, true);
-
-
-
-
-

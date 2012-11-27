@@ -74,7 +74,14 @@ function Jumper(canvas, util) {
             }
         }
 
-    };
+		//exit to 'start menu'
+        if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,i_canvasHeight)) {
+            alert('you loose ...');
+            //gameOver();
+			location.reload();
+        }
+	
+	};
 
     this.preMoving = function(jumperObj, scene, a_slats, moveHeight) {
        // alert("premoving");
@@ -105,4 +112,14 @@ function Jumper(canvas, util) {
         }
         return false;
     };
+	
+	
+	//if person die
+	this.explode = function (jumperObj, i_canvasHeight){
+		if (jumperObj.i_yPos + jumperObj.i_jumperHeight <= i_canvasHeight) {
+			return false;
+        }
+        return true;
+	}
+	
 }

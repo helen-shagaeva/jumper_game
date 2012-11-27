@@ -1,3 +1,38 @@
+/*function getElementComputedStyle(elem, prop) {
+  if (typeof elem!="object") {
+	elem = document.getElementById(elem);
+  }
+  
+  // external stylesheet for Mozilla, Opera 7+ and Safari 1.3+
+  if (document.defaultView && document.defaultView.getComputedStyle) {
+    if (prop.match(/[A-Z]/)) prop = prop.replace(/([A-Z])/g, "-$1").toLowerCase();
+    return document.defaultView.getComputedStyle(elem, "").getPropertyValue(prop);
+  }
+  
+  // external stylesheet for Explorer and Opera 9
+  if (elem.currentStyle) {
+    var i;
+    while ((i=prop.indexOf("-"))!=-1) prop = prop.substr(0, i) + prop.substr(i+1,1).toUpperCase() + prop.substr(i+2);
+    return elem.currentStyle[prop];
+  }
+  return "";
+}*/
+function gameStart() {
+    document.location.href = "html/game.html";
+}
+
+function gameOver() {
+    document.location.href = "../menu.html";
+}
+
+function gameMsg() {
+    alert("Some Button!");
+}
+
+function getKeyCode(event) {
+	var e = event || window.event;
+    return keyCode = e.which || e.KeyCode;
+}
 /*--------------*/
 function mouseShowHandler(event) {
     var e = event || window.event;
@@ -40,7 +75,27 @@ function getWinSize() {
         // IE 4
         sizes.myWidth = document.body.clientWidth;
         sizes.myHeight = document.body.clientHeight;
-    }
+    } else if (0 != arguments.length) {
+		var o_canvasID = arguments[0];
+		var o_canvas = document.getElementById(o_canvasID);
+		window.console.log(o_canvas);
+		sizes.myWidth = o_canvas.getAttribute('width');
+        sizes.myHeight = o_canvas.getAttribute('height');
+	}
+    return sizes;
+}
+
+function getCanvasSize(o_canvasID) {
+    var sizes = {
+        'myWidth':'0',
+        'myHeight':'0'
+    };
+    
+    if (typeof(o_canvasID) != "undefined") {
+		var o_canvas = document.getElementById(o_canvasID);
+		sizes.myWidth = o_canvas.getAttribute('width') || o_canvas.style.width || o_canvas.currentStyle[width] || document.defaultView.getComputedStyle(o_canvas, "").getPropertyValue(width);
+        sizes.myHeight = o_canvas.getAttribute('height') || o_canvas.style.height || o_canvas.currentStyle[height] || document.defaultView.getComputedStyle(o_canvas, "").getPropertyValue(height);
+	}
     return sizes;
 }
 
@@ -108,7 +163,7 @@ function Util() {
                     jumperObj.i_xAcc -= jumperObj.i_yShift;
                 }
                 if (jumperObj.i_xPos <= -20) {
-                    jumperObj.i_xPos = winSizes.myWidth - 40;
+                    jumperObj.i_xPos = i_canvasWidth - 40;
                 }
 
             }
@@ -121,7 +176,7 @@ function Util() {
                     jumperObj.i_xAcc += jumperObj.i_yShift;
                 }
 
-                if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                if (jumperObj.i_xPos >= i_canvasWidth - 60) {
                     jumperObj.i_xPos = -40;
                 }
             }
@@ -133,7 +188,6 @@ function Util() {
         }
 
         document.onkeypress = function (event) {
-            var winSizes = getWinSize();
             if (b_keyPressed) {
 
                 switch (parseInt(getKeyCode(event))) {
@@ -146,7 +200,7 @@ function Util() {
                             jumperObj.i_xAcc -= jumperObj.i_yShift;
                         }
                         if (jumperObj.i_xPos <= -20) {
-                            jumperObj.i_xPos = winSizes.myWidth - 40;
+                            jumperObj.i_xPos = i_canvasWidth - 40;
                         }
                         break;
                     case 39:    // right
@@ -157,7 +211,7 @@ function Util() {
                         } else {
                             jumperObj.i_xAcc += jumperObj.i_yShift;
                         }
-                        if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                        if (jumperObj.i_xPos >= i_canvasWidth - 60) {
                             jumperObj.i_xPos = -40;
                         }
                         break;
@@ -179,7 +233,7 @@ function Util() {
                         jumperObj.i_xAcc -= jumperObj.i_yShift;
                     }
                     if (jumperObj.i_xPos <= -20) {
-                        jumperObj.i_xPos = winSizes.myWidth - 40;
+                        jumperObj.i_xPos = i_canvasWidth - 40;
                     }
                     break;
                 case 39:    // right
@@ -191,7 +245,7 @@ function Util() {
                     } else {
                         jumperObj.i_xAcc += jumperObj.i_yShift;
                     }
-                    if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
                         jumperObj.i_xPos = -40;
                     }
                     break;
@@ -225,7 +279,7 @@ function Util() {
 						jumperObj.i_xAcc -= jumperObj.i_yShift;
 					}
 					if (jumperObj.i_xPos <= -20) {
-						jumperObj.i_xPos = winSizes.myWidth - 40;
+						jumperObj.i_xPos = i_canvasWidth - 40;
 					}
 
 				}
@@ -238,7 +292,7 @@ function Util() {
 						jumperObj.i_xAcc += jumperObj.i_yShift;
 					}
 
-					if (jumperObj.i_xPos >= winSizes.myWidth - 60) {
+					if (jumperObj.i_xPos >= i_canvasWidth - 60) {
 						jumperObj.i_xPos = -40;
 					}
 				}
@@ -250,9 +304,4 @@ function Util() {
 		});
 		/*--------------*/
     };
-
-    function getKeyCode(event) {
-        var e = event || window.event;
-        return keyCode = e.which || e.KeyCode;
-    }
 }
