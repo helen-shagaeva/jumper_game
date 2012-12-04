@@ -43,33 +43,32 @@ function Jumper(canvas, util) {
         }
 
         if (this.falling(jumperObj, a_slats)) {
-            jumperObj.i_yPos = jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight;
+            //alert(jumperObj.i_yPos);
+            //alert(jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight);
+            var moveHeight =  jumperObj.o_lastSlat.i_ySlatPos - this.i_jumperHeight - jumperObj.i_yPos;
+
+            if (jumperObj.i_yPos + moveHeight <= jumperObj.i_maxJumperYPos) {
+                if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
+                    jumperObj.preMoving(jumperObj, scene, a_slats, moveHeight);
+                } else {
+                    jumperObj.i_yPos += jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
+                    jumperObj.preMoving(jumperObj, scene, a_slats, moveHeight - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos));
+                }
+            } else {
+                jumperObj.i_yPos += moveHeight;
+            }
+
             jumperObj.b_boosting = true;
             jumperObj.i_yAcc = -30;
             jumperObj.i_xAcc = 0;
         } else {
             jumperObj.i_yAcc += jumperObj.i_gravity;
             if (jumperObj.b_boosting && jumperObj.i_yPos + jumperObj.i_yAcc <= jumperObj.i_maxJumperYPos) {
-                if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos)
-                {
+                if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
                     jumperObj.preMoving(jumperObj, scene, a_slats, jumperObj.i_yAcc);
-//                    this.i_score -= jumperObj.i_yAcc;
-//                    i_regenerateHeight -= jumperObj.i_yAcc;
-  //                  this.moveScene(jumperObj.i_yAcc, a_slats);
                 } else {
-                    //this.moveScene(this.i_maxJumperYPos - jumperObj.i_yPos, a_slats, a_slat_divs);
-  //                  this.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats);
-//                    this.i_score -= jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos);
                     jumperObj.i_yPos += jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
                     jumperObj.preMoving(jumperObj, scene, a_slats, jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos));
-//                    i_regenerateHeight -= jumperObj.i_maxJumperYPos - jumperObj.i_yPos;
-//                    var isRegenerate = false
-//                    if(i_regenerateHeight > scene.regenerateLimit) {
-//                        isRegenerate = true;
-//                        jumperObj.i_regenerateHeight = 0;
-//                    }
-//
-//                    scene.moveScene(jumperObj.i_yAcc - (jumperObj.i_maxJumperYPos - jumperObj.i_yPos), a_slats, isRegenerate);
                 }
             } else {
                 jumperObj.i_yPos += jumperObj.i_yAcc;
