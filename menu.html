@@ -9,7 +9,7 @@ background-image:url(11.jpg);
 width:650px;
 height:400px;
 background-repeat:no-repeat;
-background-position:left 0px
+background-position:center 0px
 }
 
 	#Play1{
@@ -17,7 +17,7 @@ background-position:left 0px
 		height:75px;
 		background-color:transparent;
 		margin-top:127px;
-		margin-left:98px;
+		margin-left:536px;
 		vertical-align:middle;	
 		font-weight:bold;
 		font-size:15pt;
@@ -30,7 +30,7 @@ background-position:left 0px
 		height:75px;
 		background-color:transparent;
 		margin-top:24px;
-		margin-left:98px;
+		margin-left:536px;
 		vertical-align:middle;	
         font-weight:bold;
 		font-size:15pt;
@@ -41,7 +41,7 @@ background-position:left 0px
 		height:75px;
 		background-color:transparent;
 		margin-top:24px;
-		margin-left:98px;
+		margin-left:536px;
 		vertical-align:middle;	
         font-weight:bold;
 		font-size:15pt;
@@ -58,7 +58,7 @@ background-position:left 0px
 	}
 </style>
 
-<script src="scripts/func.js" type="text/javascript"></script>
+<script src="src/util.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -69,9 +69,9 @@ background-position:left 0px
         <source src="Voices.ogg"/>
         Your browser doesn`t support audio tags!
     </audio>
-	<div id="Play1" align="center" onclick="document.getElementById('player').play();gameStart()" ><br>Играть</div>
+	<div id="Play1" align="center" onclick="document.getElementById('player').play();gameStart()"><br>Играть</div>
 	<div id="Seting1" align="center" onclick="document.getElementById('player').play();gameMsg()"><br>Настройки</div>
-	<div id="Exit1" align="center" onclick="document.getElementById('player').play();gameMsg()"><br>Рекорды</div>
+	<div id="Exit1" align="center" onclick="document.getElementById('player').play();gameRecord()"><br>Рекорды</div>
 </body>
 
 </html>

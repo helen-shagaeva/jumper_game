@@ -20,7 +20,9 @@
 function gameStart() {
     document.location.href = "html/game.html";
 }
-
+function gameRecord() {
+    document.location.href = "record.html";
+}
 function gameOver() {
     document.location.href = "../menu.html";
 }

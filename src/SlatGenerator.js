@@ -6,10 +6,7 @@ function SlatGenerator(canvas, util) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    this.generateSlats = function(slats, generatedHeight, score, first) {
-    //    slats.push(new Slat(300, 300, 0, this.util));
-    //    slats.push(new Slat(300, 400, 0, this.util));
-    //    slats.push(new Slat(300, 500, 0, this.util));
+    this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
         var jump_height = 290;
         var jump_width = 50;
@@ -25,9 +22,8 @@ function SlatGenerator(canvas, util) {
         if(first) {
            generatedHeight *= -1;
         } else {
-            generatedHeight = last.i_ySlatPos - generatedHeight;
+            generatedHeight *= -1;// last.i_ySlatPos - generatedHeight;
         }
-
 
 
         while(last.i_ySlatPos > generatedHeight) {
@@ -105,12 +101,7 @@ function SlatGenerator(canvas, util) {
         for(slat in slats) {
            str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-       //alert(str);
-	   /*
-	   for(var i=0; i<this.util.images.length; i++){
-			alert(this.util.images[i].src);
-	   }
-	   */
-	   //alert(this.util.getSlatWidth(last));
+
+        alert(str);
     }
 }
