@@ -8,20 +8,15 @@ function SlatGenerator(canvas, util) {
 
     this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
-        var jump_height = 290;
-        var jump_width = 50;
-
-        var canvas_height = 1300;
-        var canvas_width = 730;
-
         var count = 5; // для мусора
 
         var last = slats[slats.length-1];
 
         generatedHeight *= -1;
 
-
         while(last.i_ySlatPos > generatedHeight) {
+
+            var slat_type = 0;
 
             var y= this.getRandomInt(last.i_ySlatPos, last.i_ySlatPos - 240); // jumpers step OY (290) - 50
             if ((y - last.i_ySlatPos) > 240) {
@@ -30,10 +25,9 @@ function SlatGenerator(canvas, util) {
 
             var x = 0;
             var direction = this.getRandomInt(0, 10);
-            if ((x + 50) > (this.width - 10)) {
+            if ((x + 50) > (this.canvas.width - 10)) { // to left
                 direction = 8;
-            }   // to left
-
+            }
             if (direction < 5) {    // right
                 x = this.getRandomInt(last.i_xSlatPos, (last.i_xSlatPos + 200));
                 if(x > (this.canvas.width - 93)) {
@@ -50,27 +44,33 @@ function SlatGenerator(canvas, util) {
                 if(x > (this.canvas.width - 93)) {
                     x = x - (last.i_xSlatPos + 200);
                 }
-       lats) {
-                var dif_y = y - slats[one_slat].i_ySlatPos;
-                if(dif_y < 0) {
-                    dif_y *= -1;
-                }
-                var dif_x = x - slats[one_slat].i_xSlatPos;
-                if(dif_x < 0) {
-                    dif_x *= -1;
-                }
-                if(dif_y < (3 * 40) && (dif_x < (3 * 93))) {//this.util.getSlatWidth(newSlat)) this.util.getSlatHeight(newSlat)
-                    y -= (3 * 40) - dif_y;
-                }
             }
+/*
+             for(var oneSlat in slats) {
+                 var dif_y = slats[oneSlat].i_ySlatPos - y;
+                 if(dif_y < 0) {
+                    dif_y *= -1;
+                 }
+                 var dif_x = slats[oneSlat].i_xSlatPos - x;
+                 if(dif_x < 0) {
+                    dif_x *= -1;
+                 }
+                 if(dif_y < (3 * 40)) {
+                    if(dif_x < (3 * 93)) {
+                        y -= (dif_y - (3 * 40));
+                    }
+                 }
+             }
+*/
 
-            var newSlat = new Slat(x, y, 0);
+            var newSlat = new Slat(x, y, slat_type);
             slats.push(newSlat);
 
             newSlat.t = "main";
 
             last = newSlat;
         }
+
         last = slats.pop();
 
         var floor = this.canvas.height;
@@ -80,6 +80,8 @@ function SlatGenerator(canvas, util) {
 
         for (var i = 0; i < count; i++) {       // мусор
 
+            var slat_type = 0;
+
             var y = this.getRandomInt((generatedHeight - 10), floor);
             if(y > floor) {
                 y = y - floor;
@@ -87,41 +89,40 @@ function SlatGenerator(canvas, util) {
             if(y < (generatedHeight - 10))  {
                 y = y + ((generatedHeight - 10) - y);
             }
-            var x = this.getRandomInt(0, (this.canvas.width - 93)); //this.util.getSlatWidth(last)));
+            var x = this.getRandomInt(0, (this.canvas.width - 93));
             if(x > (this.canvas.width - 93)) {
                 x = x - (this.canvas.width - 93);
             }
             if (x < 0) {
                 x = x * (-1);
             }
-
-            for(var one_slat in slats) {
-                var dif_y = y - slats[one_slat].i_ySlatPos;
-                if(dif_y < 0) {
+/*
+             for(var oneSlat in slats) {
+                 var dif_y = slats[oneSlat].i_ySlatPos - y;
+                 if(dif_y < 0) {
                     dif_y *= -1;
-                }
-                var dif_x = x - slats[one_slat].i_xSlatPos;
-                if(dif_x < 0) {
+                 }
+                 var dif_x = slats[oneSlat].i_xSlatPos - x;
+                 if(dif_x < 0) {
                     dif_x *= -1;
-                }
-                if(dif_y < (3 * 40) && (dif_x < (3 * 93))) {//this.util.getSlatWidth(newSlat)) this.util.getSlatHeight(newSlat)
-                    y -= (3 * 40) - dif_y;
-                }
-            }
-
-            var newSlat = new Slat(x, y, 0);
+                 }
+                 if(dif_y < (3 * 40) && dif_x < (3 * 93)) {
+                    y -= (dif_y - (3 * 40));
+                 }
+             }
+*/
+            var newSlat = new Slat(x, y, slat_type);
+            slats.push(newSlat);
 
             newSlat.t = "musor";
-            slats.push(newSlat);
         }
 
         slats.push(last);
-/*
+
         var str = "";
         for(slat in slats) {
-           str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
+            str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-        alert(str);
-*/
+        //alert(str);
     }
 }
