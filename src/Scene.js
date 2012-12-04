@@ -1,3 +1,5 @@
+winSizes = getWinSize();
+
 function Scene(slatGenerator) {
     this.slatGenerator = slatGenerator;
     this.regenerateLimit = getWinSize().myHeight;
@@ -6,9 +8,10 @@ function Scene(slatGenerator) {
 //            if (typeof winSizes !== "undefined") {
 //                sPoint(jumperObj.i_score);
 //            }
+
             if (is_need_toRegenerate) {
                 //alert("Go away " + a_slats.length);
-                generator.slatsGenerate(a_slats, (i_screenHeight * 2), score, false);
+                slatGenerator.slatsGenerate(a_slats, winSizes.myHeight * 2, score, false);
                 //this.i_redraw_height = 0;
                 //alert("after " + a_slats.length);
             }
