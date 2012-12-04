@@ -45,7 +45,7 @@ function Jumper(canvas, util) {
         if (this.falling(jumperObj, a_slats)) {
             //alert(jumperObj.i_yPos);
             //alert(jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight);
-            var moveHeight =  jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight - jumperObj.i_yPos;
+            var moveHeight =  jumperObj.o_lastSlat.i_ySlatPos - this.i_jumperHeight - jumperObj.i_yPos;
 
             if (jumperObj.i_yPos + moveHeight <= jumperObj.i_maxJumperYPos) {
                 if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
