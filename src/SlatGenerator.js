@@ -72,7 +72,8 @@ function SlatGenerator(canvas, util) {
 
             last = newSlat;
         }
-        last = slats.pop();
+		
+		last = slats.pop();
 
         var floor = this.canvas.height;
         if(!first) {
@@ -88,7 +89,9 @@ function SlatGenerator(canvas, util) {
             if(y < (generatedHeight - 10))  {
                 y = y + ((generatedHeight - 10) - y);
             }
-            var x = this.getRandomInt(0, (this.canvas.width - 93)); //this.util.getSlatWidth(last)));
+            //var x = this.getRandomInt(0, (this.canvas.width - 93)); //this.util.getSlatWidth(last);
+            var x = this.getRandomInt(0, this.util.getSlatWidth(last));
+			//var x = this.util.getSlatWidth(last)));
             if(x > (this.canvas.width - 93)) {
                 x = x - (this.canvas.width - 93);
             }
@@ -117,12 +120,12 @@ function SlatGenerator(canvas, util) {
         }
 
         slats.push(last);
-/*
+
         var str = "";
         for(slat in slats) {
            str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-        alert(str);
-*/
+
+        //alert(str);
     }
 }
