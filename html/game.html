@@ -25,6 +25,18 @@
     <script src="../src/SlatGenerator.js" type="text/javascript" ></script>
     <script src="../src/game.js" type="text/javascript"></script>
 	
+		<script>
+		var can = document.getElementById("canvas");
+		var zz = can.getContext("2d");
+		zz.font="30px Arial";
+		function sPoint(pt)
+		{
+			zz.fillStyle = "#ffffff";
+			zz.fillRect(11,11,100,50);
+			zz.strokeText(pt,20,40);
+			zz.strokeStyle = "#000";
+			}
+		</script>
 	<script>
 		/*--------------*/
 		//disable default event to touchmove - scroll page
