@@ -64,7 +64,8 @@ function SlatGenerator(canvas, util) {
 
             last = newSlat;
         }
-		last = slat.pop();
+		
+		last = slats.pop();
 
         var floor = this.canvas.height;
         if(!first) {
@@ -102,6 +103,6 @@ function SlatGenerator(canvas, util) {
            str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
 
-        alert(str);
+        //alert(str);
     }
 }
