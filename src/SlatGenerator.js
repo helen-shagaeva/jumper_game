@@ -6,10 +6,7 @@ function SlatGenerator(canvas, util) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    this.generateSlats = function(slats, generatedHeight, score, first) {
-    //    slats.push(new Slat(300, 300, 0, this.util));
-    //    slats.push(new Slat(300, 400, 0, this.util));
-    //    slats.push(new Slat(300, 500, 0, this.util));
+    this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
         var jump_height = 290;
         var jump_width = 50;
@@ -25,9 +22,8 @@ function SlatGenerator(canvas, util) {
         if(first) {
            generatedHeight *= -1;
         } else {
-            generatedHeight = last.i_ySlatPos - generatedHeight;
+            generatedHeight *= -1;// last.i_ySlatPos - generatedHeight;
         }
-
 
 
         while(last.i_ySlatPos > generatedHeight) {
@@ -68,7 +64,7 @@ function SlatGenerator(canvas, util) {
 
             last = newSlat;
         }
-        last = slat.pop();
+        last = slats.pop();
 
         var floor = this.canvas.height;
         if(!first) {

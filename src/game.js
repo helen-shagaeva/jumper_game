@@ -6,8 +6,8 @@ var canvas = document.getElementById('canvas');
 canvas.height = i_screenHeight;
 canvas.width = i_screenHeight / (16/10);
 
-// Данные координаты пересчитываются в зависимости 
-// от предопределенных стилей или от расчитаных
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 var i_canvasHeight = getCanvasSize("canvas").myHeight;
 var i_canvasWidth = getCanvasSize("canvas").myWidth;
 
@@ -40,4 +40,4 @@ backgroundImg.onload = function() {
 };
 
 slats.push(new Slat(jumper.i_xPos - 10, jumper.i_yPos + 100, 0));
-generator.generateSlats(slats,getWinSize().myHeight * 3, 0, true);
+generator.slatsGenerate(slats,getWinSize().myHeight * 3, 0, true);

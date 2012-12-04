@@ -13,7 +13,7 @@ function Jumper(canvas, util) {
     this.util = util;
     this.i_yShift = 6;
     this.i_yMaxacceleration = 10;
-//  Очки за прыжки
+//  пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     this.point = 0;
 	
     this.i_jumperWidth = 0;
