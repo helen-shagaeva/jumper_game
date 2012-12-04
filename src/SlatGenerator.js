@@ -18,13 +18,7 @@ function SlatGenerator(canvas, util) {
 
         var last = slats[slats.length-1];
 
-        // ToDo calculate generate height
-        if(first) {
-           generatedHeight *= -1;
-        } else {
-            generatedHeight *= -1;// last.i_ySlatPos - generatedHeight;
-        }
-
+        generatedHeight *= -1;
 
         while(last.i_ySlatPos > generatedHeight) {
 
@@ -54,6 +48,20 @@ function SlatGenerator(canvas, util) {
                 }
                 if(x > (this.canvas.width - 93)) {
                     x = x - (last.i_xSlatPos + 200);
+                }
+            }
+
+            for(var one_slat in slats) {
+                var dif_y = y - slats[one_slat].i_ySlatPos;
+                if(dif_y < 0) {
+                    dif_y *= -1;
+                }
+                var dif_x = x - slats[one_slat].i_xSlatPos;
+                if(dif_x < 0) {
+                    dif_x *= -1;
+                }
+                if(dif_y < (3 * 40) && (dif_x < (3 * 93))) {//this.util.getSlatWidth(newSlat)) this.util.getSlatHeight(newSlat)
+                    y -= (3 * 40) - dif_y;
                 }
             }
 
@@ -87,10 +95,25 @@ function SlatGenerator(canvas, util) {
             if (x < 0) {
                 x = x * (-1);
             }
+
+            for(var one_slat in slats) {
+                var dif_y = y - slats[one_slat].i_ySlatPos;
+                if(dif_y < 0) {
+                    dif_y *= -1;
+                }
+                var dif_x = x - slats[one_slat].i_xSlatPos;
+                if(dif_x < 0) {
+                    dif_x *= -1;
+                }
+                if(dif_y < (3 * 40) && (dif_x < (3 * 93))) {//this.util.getSlatWidth(newSlat)) this.util.getSlatHeight(newSlat)
+                    y -= (3 * 40) - dif_y;
+                }
+            }
+
             var newSlat = new Slat(x, y, 0);
-            slats.push(newSlat);
 
             newSlat.t = "musor";
+            slats.push(newSlat);
         }
 
         slats.push(last);
