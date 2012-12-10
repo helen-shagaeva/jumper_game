@@ -140,12 +140,12 @@ function Util() {
 
 
     //This method can change
-    this.getSlatWidth = function(slat) {
-        return this.images[slat.slatType].width; //93
+    this.getSlatWidth = function(canvas) {
+        return canvas.width * 0.2;
     };
 
-    this.getSlatHeight = function(slat) {
-       return this.images[slat.slatType].height; //40
+    this.getSlatHeight = function(canvas) {
+        return canvas.height * 0.02;
     };
 
     var b_keyPressed = false;

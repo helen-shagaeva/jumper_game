@@ -15,7 +15,7 @@ function Jumper(canvas, util) {
     this.i_yMaxacceleration = 10;
 //  ���� �� ������
     this.point = 0;
-	
+	this.canvas = canvas;
     this.i_jumperWidth = 0;
     this.i_jumperHeight = 0;
 
@@ -101,10 +101,10 @@ function Jumper(canvas, util) {
         for (oneSlat in a_slats) {
             if (!this.b_boosting) {
                 if (jumperObj.i_xPos + jumperObj.i_jumperWidth > a_slats[oneSlat].i_xSlatPos
-                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + this.util.getSlatWidth(a_slats[oneSlat])
-                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat])
+                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + this.util.getSlatWidth(this.canvas)
+                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)
                     && jumperObj.i_yPos + jumperObj.i_yAcc + jumperObj.i_jumperHeight>=
-                            a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat])) {
+                            a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)) {
 
                     jumperObj.o_lastSlat = a_slats[oneSlat];
                     return true;

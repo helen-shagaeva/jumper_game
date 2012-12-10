@@ -28,7 +28,7 @@ function Drawer(canvas) {
 
         for (var i = 0; i < slats.length; i++) {
             this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
-                util.images[slats[i].slatType].width, util.images[slats[i].slatType].height);
-        }
+//                util.images[slats[i].slatType].width, util.images[slats[i].slatType].height);
+              util.getSlatWidth(this.canvas), util.getSlatHeight(this.canvas));        }
     };
 }
