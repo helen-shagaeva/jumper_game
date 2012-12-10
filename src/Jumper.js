@@ -1,3 +1,69 @@
+function writeRecord(points1){//записб рекордов в БД
+var arr = new Array();
+
+var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
+if(!db){alert('Failed');}
+db.transaction(function(tx){
+tx.executeSql("SELECT * FROM Records", [], function(tx, result) 
+{
+
+for(var i = 0; i < 10; i++)
+	{
+	arr[i] = new Array();
+	arr[i][0] = result.rows.item(i)['id'];
+	arr[i][1] = result.rows.item(i)['name'];
+	arr[i][2] = result.rows.item(i)['points'];
+	}
+
+
+		for(var i = 0; i < 10; i++)
+	{
+		
+		if(points1 > arr[i][2])
+		{ 		
+		 arr[9][2] = points1;
+		 
+		 var Pl_name=prompt(arr[9][2]+"  Your Name?","Player name");
+		 arr[9][1]=Pl_name;
+		 
+		 i=10;
+		}
+	}
+	
+	function Msort(i,ii)
+	{
+	if (i[2] > ii[2])
+        return -1;
+    else if (i[2] < ii[2])
+        return 1;
+    else
+        return 0;
+	}
+	arr.sort(Msort);
+	
+	for(var i = 0; i < 10; i++)
+	{
+	tx.executeSql("UPDATE Records SET name = ?, points=? WHERE id = ?",[arr[i][1],arr[i][2],i+1],null,null);
+	
+	}
+		
+		
+		
+	
+},function (tx, error){tx.executeSql("CREATE TABLE Records (id REAL UNIQUE, name TEXT,points INT)", [], null,null);
+	for(var i=1;i<11;i++)
+	{
+	tx.executeSql("INSERT INTO Records (id,name,points) values(?,?,?)",[i," ",0],null,null);
+	}});
+});
+
+
+
+
+
+location.reload();
+}
+
 function Jumper(canvas, util) {
     this.i_xPos = canvas.width/2;
     this.i_yPos = canvas.height * 0.7;
