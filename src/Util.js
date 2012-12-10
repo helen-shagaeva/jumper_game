@@ -148,6 +148,13 @@ function Util() {
         return canvas.height * 0.02;
     };
 
+    this.getJumperWidth = function(canvas) {
+        return canvas.width * 0.115;
+    };
+
+    this.getJumperHeight = function(canvas) {
+        return canvas.height * 0.115;
+    };
     var b_keyPressed = false;
 
     this.movingControll = function(jumperObj) {
