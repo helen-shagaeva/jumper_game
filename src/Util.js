@@ -18,9 +18,11 @@
   return "";
 }*/
 function gameStart() {
+    document.getElementById("player").play();
     document.location.href = "game.html";
 }
 function gameRecord() {
+    document.getElementById("player").play();
     document.location.href = "record.html";
 }
 

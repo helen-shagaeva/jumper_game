@@ -141,13 +141,11 @@ function Jumper(canvas, util) {
             }
         }
 
-
 		//exit to 'start menu'
         if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,this.i_canvasHeight)) {
             alert('you loose ...');
             this.util.gameOver();
 		//	location.reload();
-            alert("must change location!");
         }
 	};
 
