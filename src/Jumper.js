@@ -20,6 +20,7 @@ function Jumper(canvas, util) {
     this.i_jumperWidth = 0;
     this.i_jumperHeight = 0;
 
+    this.startHeight = 0;
 //    this.moveRight();
 //    this.moveLeft();
 
@@ -44,8 +45,6 @@ function Jumper(canvas, util) {
         }
 
         if (this.falling(jumperObj, a_slats)) {
-            //alert(jumperObj.i_yPos);
-            //alert(jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight);
             var moveHeight =  jumperObj.o_lastSlat.i_ySlatPos - this.i_jumperHeight - jumperObj.i_yPos;
 
             if (jumperObj.i_yPos + moveHeight <= jumperObj.i_maxJumperYPos) {
@@ -60,7 +59,7 @@ function Jumper(canvas, util) {
             }
 
             jumperObj.b_boosting = true;
-            jumperObj.i_yAcc = -30;
+            jumperObj.i_yAcc = - (this.canvas.height * 0.045);
             jumperObj.i_xAcc = 0;
         } else {
             jumperObj.i_yAcc += jumperObj.i_gravity;

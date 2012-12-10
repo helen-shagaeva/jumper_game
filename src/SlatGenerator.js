@@ -17,10 +17,11 @@ function SlatGenerator(canvas, util) {
         while(last.i_ySlatPos > generatedHeight) {
 
             var slat_type = 0;
+            var maxJump = (this.canvas.height * 0.2342);
 
-            var y= this.getRandomInt(last.i_ySlatPos, last.i_ySlatPos - 240); // jumpers step OY (290) - 50
-            if ((y - last.i_ySlatPos) > 240) {
-                y = y - ((y - last.i_ySlatPos) - 240);
+            var y= this.getRandomInt(last.i_ySlatPos, last.i_ySlatPos - maxJump); // jumpers step OY (290) - 50
+            if ((y - last.i_ySlatPos) > maxJump) {
+                y = y - ((y - last.i_ySlatPos) - maxJump);
             }
 
             var x = 0;
