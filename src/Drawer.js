@@ -8,9 +8,6 @@ function Drawer(canvas) {
             for (var j = 0; j * backgroundImg.width < this.canvas.width; j++) {
                 this.context.drawImage(backgroundImg, j * backgroundImg.width, i * backgroundImg.height,
                     backgroundImg.width, backgroundImg.height);
-
-                //context.drawImage(backgroundImg, 0, 0, backgroundImg.width, backgroundImg.height);
-
             }
         }
 
@@ -28,7 +25,6 @@ function Drawer(canvas) {
 
         for (var i = 0; i < slats.length; i++) {
             this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
-//                util.images[slats[i].slatType].width, util.images[slats[i].slatType].height);
               util.getSlatWidth(this.canvas), util.getSlatHeight(this.canvas));        }
     };
 }
