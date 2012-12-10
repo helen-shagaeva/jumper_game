@@ -14,12 +14,21 @@ function SlatGenerator(canvas, util) {
 
         generatedHeight *= -1;
 
+        alert("score = " + score);
+        var amount = 0;
+
         while(last.i_ySlatPos > generatedHeight) {
 
             var slat_type = 0;
             var maxJump = (this.canvas.height * 0.2342);
 
-            var y= this.getRandomInt(last.i_ySlatPos, last.i_ySlatPos - maxJump); // jumpers step OY (290) - 50
+            var k1 = (maxJump/2) / 10000;
+            var k = k1 * score; // for change amount of slats
+            var h = (last.i_ySlatPos - this.getRandomInt(0, maxJump));
+
+            var y= this.getRandomInt((last.i_ySlatPos + k), h + k);
+//            var y= this.getRandomInt(last.i_ySlatPos, h);
+
             if ((y - last.i_ySlatPos) > maxJump) {
                 y = y - ((y - last.i_ySlatPos) - maxJump);
             }
@@ -49,6 +58,8 @@ function SlatGenerator(canvas, util) {
 
             var newSlat = new Slat(x, y, slat_type);
             slats.push(newSlat);
+
+            amount += 1;
 
             newSlat.t = "main";
 
@@ -84,6 +95,8 @@ function SlatGenerator(canvas, util) {
             var newSlat = new Slat(x, y, slat_type);
             slats.push(newSlat);
 
+            amount += 1;
+
             newSlat.t = "musor";
         }
 
@@ -93,6 +106,6 @@ function SlatGenerator(canvas, util) {
         for(slat in slats) {
             str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-        //alert(str);
+        alert("amount = " + amount);
     }
 }
