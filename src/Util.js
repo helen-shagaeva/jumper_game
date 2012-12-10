@@ -149,11 +149,11 @@ function Util() {
     };
 
     this.getJumperWidth = function(canvas) {
-        return canvas.width * 0.115;
+        return canvas.width * 0.15;
     };
 
     this.getJumperHeight = function(canvas) {
-        return canvas.height * 0.115;
+        return canvas.width * 0.15;
     };
     var b_keyPressed = false;
 
