@@ -14,7 +14,6 @@ function SlatGenerator(canvas, util) {
 
         generatedHeight *= -1;
 
-//        alert("score = " + score);
         var amount = 0;
 
         while(last.i_ySlatPos > generatedHeight) {
@@ -22,16 +21,16 @@ function SlatGenerator(canvas, util) {
             var slat_type = 0;
             var maxJump = (this.canvas.height * 0.2342);
 
-            var k1 = (maxJump/2) / 10000;
+            var k1 = (maxJump) / 15000;
             var k = k1 * score; // for change amount of slats
             var h = (last.i_ySlatPos - this.getRandomInt(0, maxJump));
 
-            var y= this.getRandomInt((last.i_ySlatPos + k), h + k);
+            var y= this.getRandomInt((last.i_ySlatPos - k), h);
 //            var y= this.getRandomInt(last.i_ySlatPos, h);
 
-            if ((y - last.i_ySlatPos) > maxJump) {
-                y = y - ((y - last.i_ySlatPos) - maxJump);
-            }
+//            if ((y - last.i_ySlatPos) > maxJump) {
+//                y = y - ((y - last.i_ySlatPos) - maxJump);
+//            }
 
             var x = 0;
             var direction = this.getRandomInt(0, 10);
@@ -106,6 +105,5 @@ function SlatGenerator(canvas, util) {
         for(slat in slats) {
             str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-//        alert("amount = " + amount);
     }
 }

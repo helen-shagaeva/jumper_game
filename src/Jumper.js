@@ -149,7 +149,6 @@ function Jumper(canvas, util) {
 		//	location.reload();
             alert("must change location!");
         }
-	
 	};
 
     this.preMoving = function(jumperObj, scene, a_slats, moveHeight) {
