@@ -14,7 +14,7 @@ function SlatGenerator(canvas, util) {
 
         generatedHeight *= -1;
 
-        alert("score = " + score);
+//        alert("score = " + score);
         var amount = 0;
 
         while(last.i_ySlatPos > generatedHeight) {
@@ -106,6 +106,6 @@ function SlatGenerator(canvas, util) {
         for(slat in slats) {
             str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
         }
-        alert("amount = " + amount);
+//        alert("amount = " + amount);
     }
 }

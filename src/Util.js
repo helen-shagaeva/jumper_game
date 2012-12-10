@@ -18,13 +18,10 @@
   return "";
 }*/
 function gameStart() {
-    document.location.href = "html/game.html";
+    document.location.href = "game.html";
 }
 function gameRecord() {
     document.location.href = "record.html";
-}
-function gameOver() {
-    document.location.href = "../menu.html";
 }
 
 function gameMsg() {
@@ -313,4 +310,7 @@ function Util() {
 		});
 		/*--------------*/
     };
+    this.gameOver = function() {
+        document.location.href = "menu.html";
+    }
 }

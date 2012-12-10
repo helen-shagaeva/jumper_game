@@ -5,7 +5,7 @@
 <title>Menu</title>
 <style type="text/css">
 body {
-background-image:url(11.jpg);
+background-image:url(../img/menu_background.jpg);
 width:650px;
 height:400px;
 background-repeat:no-repeat;
@@ -58,20 +58,20 @@ background-position:center 0px
 	}
 </style>
 
-<script src="src/util.js" type="text/javascript"></script>
+<script src="../src/Util.js" type="text/javascript"></script>
 </head>
 
 <body>
 
  <!<img border=0px width=500px height=700px alt="" src="111.jpg" align="center" hspace=0 vspace=0>
 <audio  id="player">
-        <source src="Voices.mp3"/>
-        <source src="Voices.ogg"/>
+   <!--     <source src="../music/Voices.mp3"/>
+        <source src="../music/Voices.ogg"/> -->
         Your browser doesn`t support audio tags!
     </audio>
-	<div id="Play1" align="center" onclick="document.getElementById('player').play();gameStart()"><br>Играть</div>
-	<div id="Seting1" align="center" onclick="document.getElementById('player').play();gameMsg()"><br>Настройки</div>
-	<div id="Exit1" align="center" onclick="document.getElementById('player').play();gameRecord()"><br>Рекорды</div>
+	<div id="Play1" align="center" onclick="document.getElementById('player').play();gameStart();"><br>Играть</div>
+	<div id="Seting1" align="center" onclick="document.getElementById('player').play();gameMsg();"><br>Настройки</div>
+	<div id="Exit1" align="center" onclick="document.getElementById('player').play();gameRecord();"><br>Рекорды</div>
 </body>
 
 </html>
