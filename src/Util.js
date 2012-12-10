@@ -140,14 +140,21 @@ function Util() {
 
 
     //This method can change
-    this.getSlatWidth = function(slat) {
-        return this.images[slat.slatType].width; //93
+    this.getSlatWidth = function(canvas) {
+        return canvas.width * 0.2;
     };
 
-    this.getSlatHeight = function(slat) {
-       return this.images[slat.slatType].height; //40
+    this.getSlatHeight = function(canvas) {
+        return canvas.height * 0.02;
     };
 
+    this.getJumperWidth = function(canvas) {
+        return canvas.width * 0.115;
+    };
+
+    this.getJumperHeight = function(canvas) {
+        return canvas.height * 0.115;
+    };
     var b_keyPressed = false;
 
     this.movingControll = function(jumperObj) {

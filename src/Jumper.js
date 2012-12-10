@@ -1,3 +1,69 @@
+function writeRecord(points1){//записб рекордов в БД
+var arr = new Array();
+
+var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
+if(!db){alert('Failed');}
+db.transaction(function(tx){
+tx.executeSql("SELECT * FROM Records", [], function(tx, result) 
+{
+
+for(var i = 0; i < 10; i++)
+	{
+	arr[i] = new Array();
+	arr[i][0] = result.rows.item(i)['id'];
+	arr[i][1] = result.rows.item(i)['name'];
+	arr[i][2] = result.rows.item(i)['points'];
+	}
+
+
+		for(var i = 0; i < 10; i++)
+	{
+		
+		if(points1 > arr[i][2])
+		{ 		
+		 arr[9][2] = points1;
+		 
+		 var Pl_name=prompt(arr[9][2]+"  Your Name?","Player name");
+		 arr[9][1]=Pl_name;
+		 
+		 i=10;
+		}
+	}
+	
+	function Msort(i,ii)
+	{
+	if (i[2] > ii[2])
+        return -1;
+    else if (i[2] < ii[2])
+        return 1;
+    else
+        return 0;
+	}
+	arr.sort(Msort);
+	
+	for(var i = 0; i < 10; i++)
+	{
+	tx.executeSql("UPDATE Records SET name = ?, points=? WHERE id = ?",[arr[i][1],arr[i][2],i+1],null,null);
+	
+	}
+		
+		
+		
+	
+},function (tx, error){tx.executeSql("CREATE TABLE Records (id REAL UNIQUE, name TEXT,points INT)", [], null,null);
+	for(var i=1;i<11;i++)
+	{
+	tx.executeSql("INSERT INTO Records (id,name,points) values(?,?,?)",[i," ",0],null,null);
+	}});
+});
+
+
+
+
+
+location.reload();
+}
+
 function Jumper(canvas, util) {
     this.i_xPos = canvas.width/2;
     this.i_yPos = canvas.height * 0.7;
@@ -15,11 +81,12 @@ function Jumper(canvas, util) {
     this.i_yMaxacceleration = 10;
 //  ���� �� ������
     this.point = 0;
+	this.canvas = canvas;
     this.i_canvasHeight = canvas.height;
-	
     this.i_jumperWidth = 0;
     this.i_jumperHeight = 0;
 
+    this.startHeight = 0;
 //    this.moveRight();
 //    this.moveLeft();
 
@@ -44,8 +111,6 @@ function Jumper(canvas, util) {
         }
 
         if (this.falling(jumperObj, a_slats)) {
-            //alert(jumperObj.i_yPos);
-            //alert(jumperObj.o_lastSlat.i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat]) - this.i_jumperHeight);
             var moveHeight =  jumperObj.o_lastSlat.i_ySlatPos - this.i_jumperHeight - jumperObj.i_yPos;
 
             if (jumperObj.i_yPos + moveHeight <= jumperObj.i_maxJumperYPos) {
@@ -60,7 +125,7 @@ function Jumper(canvas, util) {
             }
 
             jumperObj.b_boosting = true;
-            jumperObj.i_yAcc = -30;
+            jumperObj.i_yAcc = - (this.canvas.height * 0.045);
             jumperObj.i_xAcc = 0;
         } else {
             jumperObj.i_yAcc += jumperObj.i_gravity;
@@ -103,10 +168,10 @@ function Jumper(canvas, util) {
         for (oneSlat in a_slats) {
             if (!this.b_boosting) {
                 if (jumperObj.i_xPos + jumperObj.i_jumperWidth > a_slats[oneSlat].i_xSlatPos
-                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + this.util.getSlatWidth(a_slats[oneSlat])
-                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat])
+                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + this.util.getSlatWidth(this.canvas)
+                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)
                     && jumperObj.i_yPos + jumperObj.i_yAcc + jumperObj.i_jumperHeight>=
-                            a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(a_slats[oneSlat])) {
+                            a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)) {
 
                     jumperObj.o_lastSlat = a_slats[oneSlat];
                     return true;
