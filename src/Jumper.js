@@ -15,6 +15,7 @@ function Jumper(canvas, util) {
     this.i_yMaxacceleration = 10;
 //  ���� �� ������
     this.point = 0;
+    this.i_canvasHeight = canvas.height;
 	
     this.i_jumperWidth = 0;
     this.i_jumperHeight = 0;
@@ -75,8 +76,9 @@ function Jumper(canvas, util) {
             }
         }
 
+
 		//exit to 'start menu'
-        if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,i_canvasHeight)) {
+        if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,this.i_canvasHeight)) {
             alert('you loose ...');
             //gameOver();
 			location.reload();
