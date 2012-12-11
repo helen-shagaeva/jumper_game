@@ -27,6 +27,7 @@ function gameRecord() {
 }
 
 function gameMsg() {
+    document.getElementById("player").play();
     alert("Some Button!");
 }
 
@@ -102,7 +103,7 @@ function getCanvasSize(o_canvasID) {
 
 // Todo utill must choose from different resources
 function Util() {
-    this.i_typesOfImages = 1;
+    this.i_typesOfImages = 2;
     this.images = new Array();
     this.jumperImage = null;
 
