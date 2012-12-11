@@ -9,6 +9,7 @@ function SlatGenerator(canvas, util) {
 
     this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
+
         var count = 5 - score * 5 / this.max; // для мусора
 
         var last = slats[slats.length-1];
@@ -18,6 +19,7 @@ function SlatGenerator(canvas, util) {
         generatedHeight *= -1;
 
         while(last.i_ySlatPos > generatedHeight) {
+
 
             var slat_type = 0;
             if(Math.random() < p) {
@@ -55,6 +57,9 @@ function SlatGenerator(canvas, util) {
             }
 
             var newSlat = new Slat(x, y, slat_type);
+            if(slat_type == 1) {
+                newSlat.speed = this.getRandomInt(3, 3 + score*(7/this.max));
+            }
             slats.push(newSlat);
 
             newSlat.t = "main";
@@ -89,6 +94,9 @@ function SlatGenerator(canvas, util) {
             }
 
             var newSlat = new Slat(x, y, slat_type);
+            if(slat_type == 1) {
+                newSlat.speed = this.getRandomInt(3, 3 + score*(7/this.max));
+            }
             slats.push(newSlat);
 
             newSlat.t = "musor";
