@@ -1,6 +1,7 @@
 function SlatGenerator(canvas, util) {
     this.canvas = canvas;
     this.util = util;
+    this.max = 20000;
 
     this.getRandomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -8,18 +9,23 @@ function SlatGenerator(canvas, util) {
 
     this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
-        var count = 5; // для мусора
+        var count = 5 - score * 5 / this.max; // для мусора
 
         var last = slats[slats.length-1];
+
+        var p = score * (1 / this.max);
 
         generatedHeight *= -1;
 
         while(last.i_ySlatPos > generatedHeight) {
 
             var slat_type = 0;
+            if(Math.random() < p) {
+                slat_type = 1;
+            }
             var maxJump = (this.canvas.height * 0.2342);
 
-            var k1 = (maxJump/2) / 15000;
+            var k1 = (maxJump/2) / this.max;
             var k = k1 * score; // for change amount of slats
             var h = (last.i_ySlatPos - this.getRandomInt(0, maxJump));
 
