@@ -143,6 +143,9 @@ function Jumper(canvas, util) {
 
 		//exit to 'start menu'
         if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,this.i_canvasHeight)) {
+            // save to records
+            this.saveIfCanToDb(this.i_score);
+            //end save to records
             alert('you loose ...');
             this.util.gameOver();
 		//	location.reload();
@@ -187,5 +190,7 @@ function Jumper(canvas, util) {
         }
         return true;
 	}
-	
+
+	this.saveIfCanToDb = function(score) {
+    }
 }
