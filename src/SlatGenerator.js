@@ -74,7 +74,7 @@ function SlatGenerator(canvas, util) {
 
         for (var i = 0; i < count; i++) {       // мусор
 
-            var slat_type = 0;
+            var slat_type = 1;
 
             var y = this.getRandomInt((generatedHeight - 10), floor);
             if(y > floor) {
