@@ -1,8 +1,10 @@
+
+
 function writeRecord(points1){//записб рекордов в БД
 var arr = new Array();
 
 var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
-if(!db){alert('Failed');}
+if(!db){alert('Failed');}else{
 db.transaction(function(tx){
 tx.executeSql("SELECT * FROM Records", [], function(tx, result) 
 {
@@ -49,20 +51,20 @@ for(var i = 0; i < 10; i++)
 		
 		
 		
-	
+		
 },function (tx, error){tx.executeSql("CREATE TABLE Records (id REAL UNIQUE, name TEXT,points INT)", [], null,null);
 	for(var i=1;i<11;i++)
 	{
 	tx.executeSql("INSERT INTO Records (id,name,points) values(?,?,?)",[i," ",0],null,null);
 	}});
 });
-
-
-
-
-
-location.reload();
 }
+location.reload();
+
+}
+
+
+
 
 function Jumper(canvas, util) {
     this.i_xPos = canvas.width/2;
@@ -146,7 +148,8 @@ function Jumper(canvas, util) {
         if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,this.i_canvasHeight)) {
             alert('you loose ...');
             //gameOver();
-			location.reload();
+			writeRecord(jumperObj.i_score);
+			//location.reload();
         }
 	
 	};
@@ -160,7 +163,8 @@ function Jumper(canvas, util) {
             isRegenerate = true;
             jumperObj.i_regenerateHeight = 0;
         }
-        scene.moveScene(moveHeight, a_slats, isRegenerate, jumperObj.i_score);
+         scene.moveScene(moveHeight, a_slats, isRegenerate, jumperObj.i_score);
+		sPoint(jumperObj.i_score)
     };
 
 

@@ -3,12 +3,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Рекорды</title>
+<style>
+  
+   #tablR {
+    width: 500px; 
+    border: 1px solid green; /* Рамка вокруг таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+   }
+   td {
+    text-align: center; /* Выравниваем текст по центру ячейки */
+   }
+  </style>
 </head>
+
+
+ 
 
 <script>
 
 var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
-if(!db){alert('Failed');}
+if(!db){alert('Failed');}else{alert("ddd");}
 db.transaction(function(tx){tx.executeSql("SELECT COUNT(*) FROM Records",[],function(tx,result){},function (tx, error){})});
 db.transaction(function(tx){
 	tx.executeSql("SELECT * FROM Records", [], function(tx, result) {
@@ -24,56 +38,8 @@ db.transaction(function(tx){
 
 </script>
   
-<table width="100%" border="2">
-
- <style>
   
-   table {
-    width: 500px; 
-    border: 1px solid green; /* Рамка вокруг таблицы */
-    margin: auto; /* Выравниваем таблицу по центру окна  */
-   }
-   td {
-    text-align: center; /* Выравниваем текст по центру ячейки */
-   }
-  </style>
 
-  <tr>
-    <td>№</td>
-    <td>Имя</td>
-    <td>Рекорд</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
 
 <body>
 </body>
