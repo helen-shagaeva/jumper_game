@@ -19,16 +19,28 @@
 }*/
 function gameStart() {
     document.getElementById("player").play();
-    document.location.href = "game.html";
+    setTimeout(function(){
+        document.location.href = "game.html";    
+    },2500);
 }
 function gameRecord() {
     document.getElementById("player").play();
-    document.location.href = "record.html";
+    setTimeout(function(){
+        document.location.href = "record.html";    
+    },2500);
 }
 
 function gameMsg() {
     document.getElementById("player").play();
-    alert("Some Button!");
+    setTimeout(function(){
+        alert("Some Button!");    
+    },2500);
+}
+
+function playJumpAudio(){
+    document.getElementById("player").pause();
+    document.getElementById("player").currentTime=0;
+    document.getElementById("player").play();
 }
 
 function getKeyCode(event) {
@@ -155,46 +167,83 @@ function Util() {
     this.getJumperHeight = function(canvas) {
         return canvas.width * 0.15;
     };
+    
     var b_keyPressed = false;
-
+    var someInterval = '';
+    var someTouchInterval = '';
     this.movingControll = function(jumperObj) {
+       
+
         document.onmousedown = function (event) {
-            b_keyPressed = true;
-			
+            b_keyPressed = true;			
 			var winSizes = getWinSize();
-			
-            if (mouseShowHandler(event).x < winSizes.myWidth / 2 && b_keyPressed) {
 
-                // Проверяем не превысил ли обект скорость по ОХ
-                if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
-                    jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
-                } else {
-                    jumperObj.i_xAcc -= jumperObj.i_yShift;
+               someInterval = setInterval(function(){
+                //console.log(event);
+                if (mouseShowHandler(event).x < winSizes.myWidth / 2 && b_keyPressed) {
+
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc -= jumperObj.i_yShift;
+                    }
+                    if (jumperObj.i_xPos <= -20) {
+                        jumperObj.i_xPos = i_canvasWidth - 40;
+                    }
+
                 }
-                if (jumperObj.i_xPos <= -20) {
-                    jumperObj.i_xPos = i_canvasWidth - 40;
+                else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
+
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc += jumperObj.i_yShift;
+                    }
+
+                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
+                        jumperObj.i_xPos = -40;
+                    }
                 }
 
-            }
-            else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
+               },100);
+                
+                if (mouseShowHandler(event).x < winSizes.myWidth / 2 && b_keyPressed) {
 
-                // Проверяем не превысил ли обект скорость по ОХ
-                if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
-                    jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
-                } else {
-                    jumperObj.i_xAcc += jumperObj.i_yShift;
-                }
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc -= jumperObj.i_yShift;
+                    }
+                    if (jumperObj.i_xPos <= -20) {
+                        jumperObj.i_xPos = i_canvasWidth - 40;
+                    }
 
-                if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-                    jumperObj.i_xPos = -40;
                 }
-            }
+                else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
+
+                    // Проверяем не превысил ли обект скорость по ОХ
+                    if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+                        jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+                    } else {
+                        jumperObj.i_xAcc += jumperObj.i_yShift;
+                    }
+
+                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
+                        jumperObj.i_xPos = -40;
+                    }
+                }
         }
 
 
         document.onmouseup = function (event) {
             b_keyPressed = false;
+            clearInterval(someInterval);
         }
+        
+        //console.log(b_keyPressed);
 
         document.onkeypress = function (event) {
             if (b_keyPressed) {
@@ -272,44 +321,47 @@ function Util() {
             }
         }
 		/*--------------*/
-		$("document").bind('touchstart',function(event){
+		$("document").bind('touchstart touchmove',function(event){
 			if (event.targetTouches.length == 1) {
 				var touch = event.targetTouches[0];
 				var winSizes = getWinSize();
 				b_keyPressed = true;
 				// Place element where the finger is
 				//console.log(touch.pageX);
-				if (touch.pageX < winSizes.myWidth / 2 && b_keyPressed) {
+                someTouchInterval = setInterval(function(){
+    				if (touch.pageX < winSizes.myWidth / 2 && b_keyPressed) {
 
-					// Проверяем не превысил ли обект скорость по ОХ
-					if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
-						jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
-					} else {
-						jumperObj.i_xAcc -= jumperObj.i_yShift;
-					}
-					if (jumperObj.i_xPos <= -20) {
-						jumperObj.i_xPos = i_canvasWidth - 40;
-					}
+    					// Проверяем не превысил ли обект скорость по ОХ
+    					if (jumperObj.i_xAcc - jumperObj.i_yShift < -jumperObj.i_yMaxacceleration) {
+    						jumperObj.i_xAcc = -jumperObj.i_yMaxacceleration;
+    					} else {
+    						jumperObj.i_xAcc -= jumperObj.i_yShift;
+    					}
+    					if (jumperObj.i_xPos <= -20) {
+    						jumperObj.i_xPos = i_canvasWidth - 40;
+    					}
 
-				}
-				else if (touch.pageX > winSizes.myWidth / 2 && b_keyPressed) {
+    				}
+    				else if (touch.pageX > winSizes.myWidth / 2 && b_keyPressed) {
 
-					// Проверяем не превысил ли обект скорость по ОХ
-					if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
-						jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
-					} else {
-						jumperObj.i_xAcc += jumperObj.i_yShift;
-					}
+    					// Проверяем не превысил ли обект скорость по ОХ
+    					if (jumperObj.i_xAcc + jumperObj.i_yShift > jumperObj.i_yMaxacceleration) {
+    						jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
+    					} else {
+    						jumperObj.i_xAcc += jumperObj.i_yShift;
+    					}
 
-					if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-						jumperObj.i_xPos = -40;
-					}
-				}
+    					if (jumperObj.i_xPos >= i_canvasWidth - 60) {
+    						jumperObj.i_xPos = -40;
+    					}
+    				}
+                },100);
 			}
 		});
 		
 		$("document").bind('touchend',function(event){
 			b_keyPressed = false;
+            clearInterval(someTouchInterval);
 		});
 		/*--------------*/
     };

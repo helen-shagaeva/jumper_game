@@ -126,10 +126,17 @@ function Jumper(canvas, util) {
         if (typeof i_canvasHeight !== "undefined" && this.explode(jumperObj,this.i_canvasHeight)) {
             // save to records
 
+            var audio_1=document.getElementById("player");
+            var audio_2=document.getElementById("player_die");
+            audio_1.pause();    audio_1.currentTime=0;
+            audio_2.pause();    audio_2.currentTime=0;
+            
+            audio_2.play();
             //end save to records
-            alert('you loose ...');
+            setTimeout(function(){   },6000);
+            alert('you loose ...'); 
             this.util.gameOver();
-		//	location.reload();
+		    //location.reload();
         }
 	};
 
@@ -156,6 +163,9 @@ function Jumper(canvas, util) {
                             a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)) {
 
                     jumperObj.o_lastSlat = a_slats[oneSlat];
+
+                    //here play audio when jumper is jump
+                    playJumpAudio();
                     return true;
                 }
             }
