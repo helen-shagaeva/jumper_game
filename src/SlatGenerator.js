@@ -1,6 +1,7 @@
 function SlatGenerator(canvas, util) {
     this.canvas = canvas;
     this.util = util;
+    this.max = 20000;
 
     this.getRandomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -8,21 +9,29 @@ function SlatGenerator(canvas, util) {
 
     this.slatsGenerate = function(slats, generatedHeight, score, first) {
 
-        var count = 5; // для мусора
+
+        var count = 5 - score * 5 / this.max; // для мусора
 
         var last = slats[slats.length-1];
+
+        var p = score * (1 / this.max);
 
         generatedHeight *= -1;
 
         while(last.i_ySlatPos > generatedHeight) {
 
+
             var slat_type = 0;
+            if(Math.random() < p) {
+                slat_type = 1;
+            }
             var maxJump = (this.canvas.height * 0.2342);
 
-            var y= this.getRandomInt(last.i_ySlatPos, last.i_ySlatPos - maxJump); // jumpers step OY (290) - 50
-            if ((y - last.i_ySlatPos) > maxJump) {
-                y = y - ((y - last.i_ySlatPos) - maxJump);
-            }
+            var k1 = (maxJump/2) / this.max;
+            var k = k1 * score; // for change amount of slats
+            var h = (last.i_ySlatPos - this.getRandomInt(0, maxJump));
+
+            var y= this.getRandomInt((last.i_ySlatPos - k - maxJump/2), h);
 
             var x = 0;
             var direction = this.getRandomInt(0, 10);
@@ -48,6 +57,9 @@ function SlatGenerator(canvas, util) {
             }
 
             var newSlat = new Slat(x, y, slat_type);
+            if(slat_type == 1) {
+                newSlat.speed = this.getRandomInt(3, 3 + score*(7/this.max));
+            }
             slats.push(newSlat);
 
             newSlat.t = "main";
@@ -64,7 +76,7 @@ function SlatGenerator(canvas, util) {
 
         for (var i = 0; i < count; i++) {       // мусор
 
-            var slat_type = 0;
+            var slat_type = 1;
 
             var y = this.getRandomInt((generatedHeight - 10), floor);
             if(y > floor) {
@@ -82,17 +94,14 @@ function SlatGenerator(canvas, util) {
             }
 
             var newSlat = new Slat(x, y, slat_type);
+            if(slat_type == 1) {
+                newSlat.speed = this.getRandomInt(3, 3 + score*(7/this.max));
+            }
             slats.push(newSlat);
 
             newSlat.t = "musor";
         }
 
         slats.push(last);
-
-        var str = "";
-        for(slat in slats) {
-            str += "x: " + slats[slat].i_xSlatPos + " y: " + slats[slat].i_ySlatPos + " " + slats[slat].t + "\n";
-        }
-        //alert(str);
     }
 }

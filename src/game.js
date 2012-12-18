@@ -39,5 +39,5 @@ backgroundImg.onload = function() {
     util.loadImage(setInterval(update, 50), jumper, util);
 };
 
-slats.push(new Slat(jumper.i_xPos - 10, jumper.i_yPos + 100, 0));
+slats.push(new Slat(canvas.width/2 - 10, canvas.height * 0.7 + 100, 0));
 generator.slatsGenerate(slats,getWinSize().myHeight * 3, 0, true);

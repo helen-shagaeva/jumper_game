@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Menu</title>
+    <style type="text/css">
+        body {
+            background-image:url(../img/menu_background.jpg);
+            width:650px;
+            height:400px;
+            background-repeat:no-repeat;
+            background-position:center 0px
+        }
+
+        #Play1{
+            width:300px;
+            height:75px;
+            background-color:transparent;
+            margin-top:127px;
+            margin-left:536px;
+            vertical-align:middle;
+            font-weight:bold;
+            font-size:15pt;
+        }
+        #Seting1{
+            width:300px;
+            height:75px;
+            background-color:transparent;
+            margin-top:24px;
+            margin-left:536px;
+            vertical-align:middle;
+            font-weight:bold;
+            font-size:15pt;
+
+        }
+        #Exit1{
+            width:300px;
+            height:75px;
+            background-color:transparent;
+            margin-top:24px;
+            margin-left:536px;
+            vertical-align:middle;
+            font-weight:bold;
+            font-size:15pt;
+
+        }
+        #Play1:hover{
+            background-color:#A020F0;
+        }
+        #Seting1:hover{
+            background-color:#1E90FF;
+        }
+        #Exit1:hover{
+            background-color:#6A5ACD;
+        }
+    </style>
+
+    <audio id="player">
+        <source src="../music/food.mp3" >
+        <source src="../music/food.ogg" >
+        Your browser doesn`t support audio tags!
+    </audio>
+
+</head>
+
+<body>
+
+    <script src="../src/Util.js" type="text/javascript"></script>
+
+ <!<img border=0px width=500px height=700px alt="" src="111.jpg" align="center" hspace=0 vspace=0>
+
+	<div id="Play1" align="center" onclick="gameStart();"><br>Играть</div>
+	<div id="Seting1" align="center" onclick="gameMsg();"><br>Настройки</div>
+	<div id="Exit1" align="center" onclick="gameRecord();"><br>Рекорды</div>
+</body>
+
+</html>

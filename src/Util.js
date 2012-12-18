@@ -18,16 +18,16 @@
   return "";
 }*/
 function gameStart() {
-    document.location.href = "html/game.html";
+    document.getElementById("player").play();
+    document.location.href = "game.html";
 }
 function gameRecord() {
+    document.getElementById("player").play();
     document.location.href = "record.html";
-}
-function gameOver() {
-    document.location.href = "../menu.html";
 }
 
 function gameMsg() {
+    document.getElementById("player").play();
     alert("Some Button!");
 }
 
@@ -103,7 +103,7 @@ function getCanvasSize(o_canvasID) {
 
 // Todo utill must choose from different resources
 function Util() {
-    this.i_typesOfImages = 1;
+    this.i_typesOfImages = 2;
     this.images = new Array();
     this.jumperImage = null;
 
@@ -149,11 +149,11 @@ function Util() {
     };
 
     this.getJumperWidth = function(canvas) {
-        return canvas.width * 0.115;
+        return canvas.width * 0.15;
     };
 
     this.getJumperHeight = function(canvas) {
-        return canvas.height * 0.115;
+        return canvas.width * 0.15;
     };
     var b_keyPressed = false;
 
@@ -313,4 +313,7 @@ function Util() {
 		});
 		/*--------------*/
     };
+    this.gameOver = function() {
+        document.location.href = "menu.html";
+    }
 }
