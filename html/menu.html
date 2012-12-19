@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Menu</title>
+    
     <style type="text/css">
         body {
             background-image:url(../img/menu_background.jpg);
@@ -11,48 +12,22 @@
             background-repeat:no-repeat;
             background-position:center 0px
         }
-
-        #Play1{
+        .button{
             width:300px;
             height:75px;
             background-color:transparent;
-            margin-top:127px;
-            margin-left:536px;
+            margin-left:70%;
             vertical-align:middle;
             font-weight:bold;
             font-size:15pt;
+            cursor: pointer;
         }
-        #Seting1{
-            width:300px;
-            height:75px;
-            background-color:transparent;
-            margin-top:24px;
-            margin-left:536px;
-            vertical-align:middle;
-            font-weight:bold;
-            font-size:15pt;
-
-        }
-        #Exit1{
-            width:300px;
-            height:75px;
-            background-color:transparent;
-            margin-top:24px;
-            margin-left:536px;
-            vertical-align:middle;
-            font-weight:bold;
-            font-size:15pt;
-
-        }
-        #Play1:hover{
-            background-color:#A020F0;
-        }
-        #Seting1:hover{
-            background-color:#1E90FF;
-        }
-        #Exit1:hover{
-            background-color:#6A5ACD;
-        }
+        .button#Play1{  margin-top:125px;   }
+        .button#Seting1{ margin-top:24px;    }
+        .button#Exit1{  margin-top:24px;    }
+        .button#Play1:hover{    background-color:#A020F0;   }
+        .button#Seting1:hover{  background-color:#1E90FF;   }
+        .button#Exit1:hover{    background-color:#6A5ACD;   }
     </style>
 
     <audio id="player">
@@ -67,11 +42,11 @@
 
     <script src="../src/Util.js" type="text/javascript"></script>
 
- <!<img border=0px width=500px height=700px alt="" src="111.jpg" align="center" hspace=0 vspace=0>
+    <!--<img border=0px width=500px height=700px alt="" src="111.jpg" align="center" hspace=0 vspace=0>-->
 
-	<div id="Play1" align="center" onclick="gameStart();"><br>Играть</div>
-	<div id="Seting1" align="center" onclick="gameMsg();"><br>Настройки</div>
-	<div id="Exit1" align="center" onclick="gameRecord();"><br>Рекорды</div>
+	<div id="Play1" class="button" align="center" onclick="gameStart();"><br>Играть</div>
+	<div id="Seting1" class="button" align="center" onclick="gameMsg();"><br>Настройки</div>
+	<div id="Exit1" class="button" align="center" onclick="gameRecord();"><br>Рекорды</div>
 </body>
 
 </html>

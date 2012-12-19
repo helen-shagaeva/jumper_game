@@ -1,76 +1,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Рекорды</title>
-</head>
-
-<script>
-    var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
-    if(!db){alert('Failed');}
-    db.transaction(function(tx){tx.executeSql("SELECT COUNT(*) FROM Records",[],function(tx,result){},function (tx, error){})});
-    db.transaction(function(tx){
-        tx.executeSql("SELECT * FROM Records", [], function(tx, result) {
-
-            var tableR = '<table width="100%" border="2" id="tablR"><tr><td>№</td><td>Имя</td><td>Рекорд</td></tr>';
-            for(var i = 0; i< result.rows.length; i++){
-                tableR= tableR+'<tr><td>' + result.rows.item(i)['id'] + ' </td><td>' + result.rows.item(i)['name'] + '</td><td>' + result.rows.item(i)['points']+ '</td></tr>' ;
-            }
-            tableR+='</table>'
-            document.write(tableR);
-            }, null)});
-</script>
-  
-<table width="100%" border="2">
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Рекорды</title>
 <style>
   
-   table {
-       width: 500px;
-       border: 1px solid green; /* Рамка вокруг таблицы */
-       margin: auto; /* Выравниваем таблицу по центру окна  */
+   #tablR {
+    width: 500px; 
+    border: 1px solid green; /* Рамка вокруг таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
    }
    td {
-       text-align: center; /* Выравниваем текст по центру ячейки */
+    text-align: center; /* Выравниваем текст по центру ячейки */
    }
   </style>
+</head>
 
-  <tr>
-    <td>№</td>
-    <td>Имя</td>
-    <td>Рекорд</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
+
+ 
+
+<script>
+
+var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
+if(!db){alert('Failed');}
+db.transaction(function(tx){tx.executeSql("SELECT COUNT(*) FROM Records",[],function(tx,result){},function (tx, error){})});
+db.transaction(function(tx){
+	tx.executeSql("SELECT * FROM Records", [], function(tx, result) {
+		
+		var tableR = '<table width="100%" border="2" id="tablR"><tr><td>№</td><td>Имя</td><td>Рекорд</td></tr>';
+		for(var i = 0; i< result.rows.length; i++){
+			tableR= tableR+'<tr><td>' + result.rows.item(i)['id'] + ' </td><td>' + result.rows.item(i)['name'] + '</td><td>' + result.rows.item(i)['points']+ '</td></tr>' ;
+		}
+		tableR+='</table>'
+		document.write(tableR);
+		}, null)});
+
+
+</script>
+  
+  
+
 
 <body>
 </body>

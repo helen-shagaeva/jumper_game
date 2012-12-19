@@ -10,33 +10,46 @@
     </style>
     <script src="../src/initialScript.js" type="text/javascript"></script>
 </head>
-<body>
-    <canvas id="canvas" width="500" height="800" style="display:block; margin: 0 auto;"></canvas>
+<body align="center">
+	<audio id="player">
+        <source src="../music/jump.mp3" >
+        <source src="../music/jump.ogg" >
+        Your browser doesn`t support audio tags!
+    </audio>
+    <audio id="player_die">
+        <source src="../music/die.mp3" >
+        <source src="../music/die.ogg" >
+        Your browser doesn`t support audio tags!
+    </audio>
+<canvas id="canvas1"  width="100" height="50" style="display:block; margin: 0 auto; z-index:1; position:absolute;margin-left:50%;margin-right:50%"></canvas>
+    <canvas id="canvas" width="500" height="800" style="display:block; margin: 0 auto;z-index:0;position:absolute; margin-left:50%"></canvas>
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
-
-    <script src="../src/Util.js" type="text/javascript"></script>
-    <script src="../src/Scene.js" type="text/javascript"></script>
-    <script src="../src/Jumper.js" type="text/javascript"></script>
-    <script src="../src/Drawer.js" type="text/javascript"></script>
-    <script src="../src/Slat.js" type="text/javascript" ></script>
-    <script src="../src/SlatGenerator.js" type="text/javascript" ></script>
-    <script src="../src/game.js" type="text/javascript"></script>
-	
-		<script>
-		var can = document.getElementById("canvas");
+<script>
+		var can = document.getElementById("canvas1");
 		var zz = can.getContext("2d");
 		zz.font="30px Arial";
 		function sPoint(pt)
 		{
+			//alert(pt);
 			zz.fillStyle = "#ffffff";
 			zz.fillRect(11,11,100,50);
 			zz.strokeText(pt,20,40);
 			zz.strokeStyle = "#000";
 			}
 		</script>
+    <script src="../src/Util.js" type="text/javascript"></script>
+    <script src="../src/Scene.js" type="text/javascript"></script>
+    <script src="../src/Jumper.js" type="text/javascript"></script>
+	
+    <script src="../src/Drawer.js" type="text/javascript"></script>
+    <script src="../src/Slat.js" type="text/javascript" ></script>
+    <script src="../src/SlatGenerator.js" type="text/javascript" ></script>
+    <script src="../src/game.js" type="text/javascript"></script>
+	
+		
 	<script>
 		/*--------------*/
 		//disable default event to touchmove - scroll page
