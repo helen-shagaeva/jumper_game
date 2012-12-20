@@ -160,7 +160,7 @@ function Jumper(canvas, util) {
             
             audio_2.play();
             //end save to records
-
+        
 	writeRecord(parseInt(jumperObj.i_score));
 
             setTimeout(function(){   },6000);
