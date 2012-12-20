@@ -54,6 +54,8 @@ for(var i = 0; i < 10; i++)
 });
 }
 location.reload();
+//mysql_query("TRUNCATE TABLE jumpDB");
+ 
 
 }
 
