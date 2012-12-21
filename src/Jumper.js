@@ -164,9 +164,9 @@ function Jumper(canvas, util, drawer) {
             var audio_1 = document.getElementById("player");
             var audio_2 = document.getElementById("player_die");
             audio_1.pause();
-            audio_1.currentTime = 0;
+            //audio_1.currentTime = 0;
             audio_2.pause();
-            audio_2.currentTime = 0;
+            //audio_2.currentTime = 0;
 
             audio_2.play();
             //end save to records
