@@ -33,14 +33,14 @@ function gameRecord() {
 function gameMsg() {
     document.getElementById("player").play();
     setTimeout(function(){
-        alert("Some Button!");    
+        alert("Разработчики: Богдан Е.Ю. Шагаева Е.С. Евдокимов А.В. Маликов В.О.");    
     },2500);
 }
 
 function playJumpAudio(){
-//    document.getElementById("player").pause();
-//    document.getElementById("player").currentTime=0;
-//    document.getElementById("player").play();
+ document.getElementById("player").pause();
+ document.getElementById("player").currentTime=0;
+ document.getElementById("player").play();
 }
 
 function getKeyCode(event) {
