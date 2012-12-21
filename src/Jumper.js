@@ -162,8 +162,13 @@ function Jumper(canvas, util, drawer) {
 
             audio_2.play();
             //end save to records
+            if((navigator.userAgent).indexOf('Chrome') != -1){
+                writeRecord(parseInt(jumperObj.i_score));
+		    } else {
+                alert('For save records you should use Google Chrome');
+                document.location.href = "menu.html";
+            }
 
-            writeRecord(parseInt(jumperObj.i_score));
 
             setTimeout(function () {
             }, 6000);
