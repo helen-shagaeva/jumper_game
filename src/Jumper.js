@@ -66,7 +66,7 @@ function Msort(i, ii) {
 arr.sort(Msort);
 
 
-function Jumper(canvas, util) {
+function Jumper(canvas, util, drawer) {
     this.i_xPos = canvas.width / 2;
     this.i_yPos = canvas.height * 0.7;
     this.i_xAcc = 0;
@@ -87,6 +87,8 @@ function Jumper(canvas, util) {
     this.i_canvasHeight = canvas.height;
     this.i_jumperWidth = 0;
     this.i_jumperHeight = 0;
+
+    this.drawer = drawer;
 
     this.startHeight = 0;
 //    this.moveRight();
@@ -182,7 +184,7 @@ function Jumper(canvas, util) {
             jumperObj.i_regenerateHeight = 0;
         }
         scene.moveScene(moveHeight, a_slats, isRegenerate, jumperObj.i_score);
-        sPoint(jumperObj.i_score);
+        this.drawer.drawPoitnsCanvas(jumperObj.i_score);
     };
 
 
