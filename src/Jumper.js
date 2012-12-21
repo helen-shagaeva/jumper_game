@@ -17,7 +17,7 @@ function writeRecord(points1) {//записб рекордов в БД
                 for (var i = 0; i < 10; i++) {
                     if (points1 > arr[i][2]) {
                         arr[9][2] = points1;
-                        var Pl_name = prompt(arr[9][2] + "  Your Name?", "Player name");
+                        var Pl_name = prompt("Your record: " + arr[9][2] + "\nWhat's your name?", "Player name");
                         arr[9][1] = Pl_name;
                         i = 10;
                     }
