@@ -33,7 +33,7 @@ function gameRecord() {
 function gameMsg() {
     document.getElementById("player").play();
     setTimeout(function(){
-        alert("Some Button!");    
+        alert("Разработчики: Богдан Е.Ю. Шагаева Е.С. Евдокимов А.В. Маликов В.О.");    
     },2500);
 }
 
