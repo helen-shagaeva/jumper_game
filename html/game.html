@@ -75,14 +75,11 @@
 			$(window).resize(function(){
 				$('#canvas1').css('left',$('#canvas').offset().left);
 			}).trigger('resize');
-<<<<<<< HEAD
 
-			//if((navigator.userAgent).indexOf('Chrome') == -1){
-		      //  alert('Для правильной работы приложения необходим браузер Google Chrome');
-		      //  document.location.href = "menu.html";
-		   // }
-=======
->>>>>>> 7f986b64f0c8cb47e8f5d546bfd98376b3373af6
+			if((navigator.userAgent).indexOf('Chrome') == -1){
+		       alert('Для правильной работы приложения необходим браузер Google Chrome');
+		       document.location.href = "menu.html";
+		   }
 		});
 		/*--------------*/
 	</script>
