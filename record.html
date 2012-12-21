@@ -3,8 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Рекорды</title>
-<style type="text/css">
-
+<style>
+  
+   #tablR {
+    width: 500px; 
+    border: 1px solid green; /* Рамка вокруг таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+   }
+   td {
+    text-align: center; /* Выравниваем текст по центру ячейки */
+   }
   </style>
 </head>
 
@@ -14,16 +22,16 @@
 <script>
 
 var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
-if(!db){alert('Failed');}
+if(!db){alert('Failed');}else{alert("ddd");}
 db.transaction(function(tx){tx.executeSql("SELECT COUNT(*) FROM Records",[],function(tx,result){},function (tx, error){})});
 db.transaction(function(tx){
 	tx.executeSql("SELECT * FROM Records", [], function(tx, result) {
 		
-		var tableR = '<table background="221.jpg" align="center" width="500px" height="570px" border="1"  id="tablR"><tr><td>.</td><td></td><td></td></tr> ';
+		var tableR = '<table width="100%" border="2" id="tablR"><tr><td>№</td><td>Имя</td><td>Рекорд</td></tr>';
 		for(var i = 0; i< result.rows.length; i++){
 			tableR= tableR+'<tr><td>' + result.rows.item(i)['id'] + ' </td><td>' + result.rows.item(i)['name'] + '</td><td>' + result.rows.item(i)['points']+ '</td></tr>' ;
 		}
-		tableR+='</table><div   align="center"><br>Играть</div>';
+		tableR+='</table>'
 		document.write(tableR);
 		}, null)});
 
@@ -33,7 +41,6 @@ db.transaction(function(tx){
   
 
 
-<body >
-
+<body>
 </body>
 </html>
