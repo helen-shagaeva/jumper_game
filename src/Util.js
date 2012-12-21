@@ -115,7 +115,7 @@ function getCanvasSize(o_canvasID) {
 
 // Todo utill must choose from different resources
 function Util() {
-    this.i_typesOfImages = 3;
+    this.i_typesOfImages = 7;
     this.images = new Array();
     this.jumperImage = null;
 

@@ -20,13 +20,15 @@ function SlatGenerator(canvas, util) {
 
         while(last.i_ySlatPos > generatedHeight) {
 
-
             var slat_type = 0;
-            if(Math.random() < p) {
+            var rand = Math.random();
+            if(rand < p) {
                 slat_type = 1;
             }
-            if(Math.random() < 0.1) {
+            if(rand < 0.1) {
                 slat_type = 2;
+            } else if(rand < 0.2) {
+                slat_type = 3;
             }
             var maxJump = (this.canvas.height * 0.2342);
 
