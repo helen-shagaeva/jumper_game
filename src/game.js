@@ -6,6 +6,8 @@ var canvas = document.getElementById('canvas');
 canvas.height = i_screenHeight;
 canvas.width = i_screenHeight / (16/10);
 
+
+
 // ������ ���������� ��������������� � ����������� 
 // �� ���������������� ������ ��� �� ����������
 var i_canvasHeight = getCanvasSize("canvas").myHeight;

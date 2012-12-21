@@ -70,17 +70,17 @@ function Jumper(canvas, util) {
     this.i_xPos = canvas.width / 2;
     this.i_yPos = canvas.height * 0.7;
     this.i_xAcc = 0;
-    this.i_yAcc = 3;
-    this.i_gravity = 0.003322259 * canvas.height;
+    this.i_yAcc = canvas.height/200;
+    this.i_gravity = 0.003022259 * canvas.height;
     this.i_maxJumperYPos = canvas.height * 0.5;
     this.i_score = 0;
     this.i_regenerateHeight = 0;
-    this.i_friction = 1;
+    this.i_friction = canvas.width / 400;
     this.b_boosting = false;
     this.o_lastSlat = null;
     this.util = util;
-    this.i_yShift = 6;
-    this.i_yMaxacceleration = 10;
+    this.i_yShift = canvas.width / 90;
+    this.i_yMaxacceleration = canvas.width/15;
 //  ���� �� ������
     this.point = 0;
     this.canvas = canvas;
@@ -107,13 +107,21 @@ function Jumper(canvas, util) {
         jumperObj.i_xPos += jumperObj.i_xAcc;
 
 
+        if (jumperObj.i_xAcc < 0 && jumperObj.i_xPos <= -i_canvasWidth/20) {
+            jumperObj.i_xPos = i_canvasWidth - i_canvasWidth/20;
+        }
+        else if (jumperObj.i_xAcc > 0 && jumperObj.i_xPos >= i_canvasWidth - i_canvasWidth/20) {
+            jumperObj.i_xPos = -i_canvasWidth/20;
+        }
+
+
         if (jumperObj.i_yAcc >= 0) {
             jumperObj.b_boosting = false;
         }
 
         if (this.falling(jumperObj, a_slats)) {
 
-            var moveHeight = jumperObj.o_lastSlat.i_ySlatPos - this.i_jumperHeight - jumperObj.i_yPos;
+            var moveHeight = jumperObj.o_lastSlat.i_ySlatPos - jumperObj.util.getJumperHeight(jumperObj.canvas) - jumperObj.i_yPos;
 
             if (jumperObj.i_yPos + moveHeight <= jumperObj.i_maxJumperYPos) {
                 if (jumperObj.i_yPos <= jumperObj.i_maxJumperYPos) {
@@ -132,7 +140,7 @@ function Jumper(canvas, util) {
                 dop = 2;
             }
             jumperObj.i_yAcc = -(this.canvas.height * 0.045 * dop);
-            jumperObj.i_xAcc = 0;
+            //jumperObj.i_xAcc = 0;
         } else {
             jumperObj.i_yAcc += jumperObj.i_gravity;
             if (jumperObj.b_boosting && jumperObj.i_yPos + jumperObj.i_yAcc <= jumperObj.i_maxJumperYPos) {
@@ -189,11 +197,11 @@ function Jumper(canvas, util) {
     this.falling = function (jumperObj, a_slats) {
         if (!this.b_boosting) {
             for (oneSlat in a_slats) {
-                if (a_slats[oneSlat].slatType != 4 && jumperObj.i_xPos + jumperObj.i_jumperWidth > a_slats[oneSlat].i_xSlatPos
-                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + this.util.getSlatWidth(this.canvas)
-                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)
-                    && jumperObj.i_yPos + jumperObj.i_yAcc + jumperObj.i_jumperHeight >=
-                    a_slats[oneSlat].i_ySlatPos - this.util.getSlatHeight(this.canvas)) {
+                if (a_slats[oneSlat].slatType != 4 && jumperObj.i_xPos + jumperObj.util.getJumperWidth(jumperObj.canvas) > a_slats[oneSlat].i_xSlatPos
+                    && jumperObj.i_xPos < a_slats[oneSlat].i_xSlatPos + jumperObj.util.getSlatWidth(this.canvas)
+                    && jumperObj.i_yPos <= a_slats[oneSlat].i_ySlatPos - jumperObj.util.getSlatHeight(this.canvas)
+                    && jumperObj.i_yPos + jumperObj.i_yAcc + jumperObj.util.getJumperHeight(jumperObj.canvas) >=
+                    a_slats[oneSlat].i_ySlatPos - jumperObj.util.getSlatHeight(jumperObj.canvas)) {
 
                     jumperObj.o_lastSlat = a_slats[oneSlat];
                     if (jumperObj.o_lastSlat.slatType == 3) {
@@ -212,7 +220,7 @@ function Jumper(canvas, util) {
 
     //if person die
     this.explode = function (jumperObj, i_canvasHeight) {
-        if (jumperObj.i_yPos + jumperObj.i_jumperHeight <= i_canvasHeight) {
+        if (jumperObj.i_yPos + jumperObj.i_jumperHeight <= i_canvasHeight + i_canvasHeight* 0.1) {
             return false;
         }
         return true;
