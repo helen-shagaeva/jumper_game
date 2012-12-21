@@ -25,6 +25,9 @@ function SlatGenerator(canvas, util) {
             if(Math.random() < p) {
                 slat_type = 1;
             }
+            if(Math.random() < 0.1) {
+                slat_type = 2;
+            }
             var maxJump = (this.canvas.height * 0.2342);
 
             var k1 = (maxJump/2) / this.max;

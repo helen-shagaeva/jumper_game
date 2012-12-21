@@ -38,9 +38,9 @@ function gameMsg() {
 }
 
 function playJumpAudio(){
-    document.getElementById("player").pause();
-    document.getElementById("player").currentTime=0;
-    document.getElementById("player").play();
+//    document.getElementById("player").pause();
+//    document.getElementById("player").currentTime=0;
+//    document.getElementById("player").play();
 }
 
 function getKeyCode(event) {
@@ -115,7 +115,7 @@ function getCanvasSize(o_canvasID) {
 
 // Todo utill must choose from different resources
 function Util() {
-    this.i_typesOfImages = 2;
+    this.i_typesOfImages = 3;
     this.images = new Array();
     this.jumperImage = null;
 
