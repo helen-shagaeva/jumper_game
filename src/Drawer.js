@@ -37,8 +37,10 @@ function Drawer(canvas) {
                     slats[i].i_xSlatPos += slats[i].speed;
                 }
             }
-            this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
-                util.getSlatWidth(this.canvas), util.getSlatHeight(this.canvas));
+            if(slats[i].slatType != 4) {
+                this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
+                    util.getSlatWidth(this.canvas), util.getSlatHeight(this.canvas));
+            }
         }
     };
 }
