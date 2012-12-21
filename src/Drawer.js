@@ -1,5 +1,6 @@
-function Drawer(canvas) {
+function Drawer(canvas, points_canvas) {
     this.canvas = canvas;
+    this.points_canvas = points_canvas;
     this.context = this.canvas.getContext('2d');
 
     this.drawBackground = function (backgroundImg) {
@@ -43,4 +44,15 @@ function Drawer(canvas) {
             }
         }
     };
+    this.drawPoitnsCanvas = function(pt) {
+        var can = document.getElementById("canvas1");
+        var context = can.getContext("2d");
+        context.clearRect(0,0,can.width, can.height);
+        var font_w = (can.width / 4);
+        context.font = font_w + "px Arial";
+        context.fillStyle = "#ffffff";
+        context.fillRect(11,11,(can.width),50);
+        context.strokeText(pt,20,40);
+        context.strokeStyle = "#000";
+    }
 }

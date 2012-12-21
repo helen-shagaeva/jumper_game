@@ -39,19 +39,6 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
-<script>
-		var can = document.getElementById("canvas1");
-		var zz = can.getContext("2d");
-		zz.font="30px Arial";
-		function sPoint(pt)
-		{
-//			alert(pt);
-			zz.fillStyle = "#ffffff";
-			zz.fillRect(11,11,100,50);
-			zz.strokeText(pt,20,40);
-			zz.strokeStyle = "#000";
-			}
-		</script>
     <script src="../src/Util.js" type="text/javascript"></script>
     <script src="../src/Scene.js" type="text/javascript"></script>
     <script src="../src/Jumper.js" type="text/javascript"></script>
@@ -75,11 +62,6 @@
 			$(window).resize(function(){
 				$('#canvas1').css('left',$('#canvas').offset().left);
 			}).trigger('resize');
-
-//			if((navigator.userAgent).indexOf('Chrome') == -1){
-//		        alert('Для правильной работы приложения необходим браузер Google Chrome');
-//		        document.location.href = "menu.html";
-//		    }
 		});
 		/*--------------*/
 	</script>

@@ -1,10 +1,14 @@
 var i_screenHeight = getWinSize().myHeight;
 var i_screenWidth = getWinSize().myWidth;
+//alert(i_screenHeight + " " + i_screenWidth);
 
 // TODO move to util
 var canvas = document.getElementById('canvas');
 canvas.height = i_screenHeight;
 canvas.width = i_screenHeight / (16/10);
+var poits_canvas = document.getElementById('canvas1');
+poits_canvas.height = canvas.height / 2;
+poits_canvas.width = canvas.width / 4;
 
 
 
@@ -18,7 +22,7 @@ var drawer = new Drawer(canvas);
 var util = new Util();
 var generator = new SlatGenerator(canvas, util);
 var scene = new Scene(generator);
-var jumper = new Jumper(canvas, util, scene);
+var jumper = new Jumper(canvas, util, drawer);
 
 
 // TODO move canvas to center of the screen
@@ -39,6 +43,7 @@ var backgroundImg = new Image();
 backgroundImg.src = "../img/background.png";
 backgroundImg.onload = function() {
     util.loadImage(setInterval(update, 50), jumper, util);
+    drawer.drawPoitnsCanvas(0);
 };
 
 slats.push(new Slat(canvas.width/2 - 10, canvas.height * 0.7 + 100, 0));
