@@ -63,7 +63,7 @@ function SlatGenerator(canvas, util) {
 
             var newSlat = new Slat(x, y, slat_type);
             if(slat_type == 1) {
-                newSlat.speed = this.getRandomInt(3, 3 + score*(7/this.max));
+                newSlat.speed = this.getRandomInt(this.canvas.width/200, this.canvas.width/200 + score*(this.canvas.width/80/this.max));
             }
             slats.push(newSlat);
 
