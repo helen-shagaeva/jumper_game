@@ -10,6 +10,8 @@ var poits_canvas = document.getElementById('canvas1');
 poits_canvas.height = canvas.height / 2;
 poits_canvas.width = canvas.width / 4;
 
+
+
 // ������ ���������� ��������������� � ����������� 
 // �� ���������������� ������ ��� �� ����������
 var i_canvasHeight = getCanvasSize("canvas").myHeight;

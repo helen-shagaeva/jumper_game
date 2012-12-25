@@ -38,9 +38,9 @@ function gameMsg() {
 }
 
 function playJumpAudio(){
-//    document.getElementById("player").pause();
-//    document.getElementById("player").currentTime=0;
-//    document.getElementById("player").play();
+ document.getElementById("player").pause();
+ //document.getElementById("player").currentTime=0;
+ document.getElementById("player").play();
 }
 
 function getKeyCode(event) {
@@ -188,9 +188,6 @@ function Util() {
                     } else {
                         jumperObj.i_xAcc -= jumperObj.i_yShift;
                     }
-                    if (jumperObj.i_xPos <= -20) {
-                        jumperObj.i_xPos = i_canvasWidth - 40;
-                    }
 
                 }
                 else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
@@ -202,9 +199,6 @@ function Util() {
                         jumperObj.i_xAcc += jumperObj.i_yShift;
                     }
 
-                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-                        jumperObj.i_xPos = -40;
-                    }
                 }
 
                },100);
@@ -217,9 +211,6 @@ function Util() {
                     } else {
                         jumperObj.i_xAcc -= jumperObj.i_yShift;
                     }
-                    if (jumperObj.i_xPos <= -20) {
-                        jumperObj.i_xPos = i_canvasWidth - 40;
-                    }
 
                 }
                 else if (mouseShowHandler(event).x > winSizes.myWidth / 2 && b_keyPressed) {
@@ -229,10 +220,6 @@ function Util() {
                         jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
                     } else {
                         jumperObj.i_xAcc += jumperObj.i_yShift;
-                    }
-
-                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-                        jumperObj.i_xPos = -40;
                     }
                 }
         }
@@ -257,9 +244,6 @@ function Util() {
                         } else {
                             jumperObj.i_xAcc -= jumperObj.i_yShift;
                         }
-                        if (jumperObj.i_xPos <= -20) {
-                            jumperObj.i_xPos = i_canvasWidth - 40;
-                        }
                         break;
                     case 39:    // right
 
@@ -268,9 +252,6 @@ function Util() {
                             jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
                         } else {
                             jumperObj.i_xAcc += jumperObj.i_yShift;
-                        }
-                        if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-                            jumperObj.i_xPos = -40;
                         }
                         break;
                 }
@@ -290,9 +271,7 @@ function Util() {
                     } else {
                         jumperObj.i_xAcc -= jumperObj.i_yShift;
                     }
-                    if (jumperObj.i_xPos <= -20) {
-                        jumperObj.i_xPos = i_canvasWidth - 40;
-                    }
+
                     break;
                 case 39:    // right
                     b_keyPressed = true;
@@ -303,9 +282,7 @@ function Util() {
                     } else {
                         jumperObj.i_xAcc += jumperObj.i_yShift;
                     }
-                    if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-                        jumperObj.i_xPos = -40;
-                    }
+
                     break;
             }
         }
@@ -337,9 +314,7 @@ function Util() {
     					} else {
     						jumperObj.i_xAcc -= jumperObj.i_yShift;
     					}
-    					if (jumperObj.i_xPos <= -20) {
-    						jumperObj.i_xPos = i_canvasWidth - 40;
-    					}
+
 
     				}
     				else if (touch.pageX > winSizes.myWidth / 2 && b_keyPressed) {
@@ -349,10 +324,6 @@ function Util() {
     						jumperObj.i_xAcc = jumperObj.i_yMaxacceleration;
     					} else {
     						jumperObj.i_xAcc += jumperObj.i_yShift;
-    					}
-
-    					if (jumperObj.i_xPos >= i_canvasWidth - 60) {
-    						jumperObj.i_xPos = -40;
     					}
     				}
                 },100);
