@@ -33,7 +33,7 @@ function gameRecord() {
 function gameMsg() {
     document.getElementById("player").play();
     setTimeout(function(){
-        alert("Разработчики:\nБогдан Е.Ю.\nШагаева Е.С.\nЕвдокимов А.В.\nМаликов В.А.");
+        alert("Developers:\nBogdan L.\nShagaeva H.\nEvdokymov A.\nMalikov V.");
     },2500);
 }
 
