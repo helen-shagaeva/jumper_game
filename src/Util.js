@@ -130,7 +130,7 @@ function Util() {
             util.images[i] = new Image();
             util.images[i].onload = function() {
                 if(++loadedImages >= util.i_typesOfImages) {
-                    funcAfterLoad();
+//                    funcAfterLoad();
                 }
             };
             util.images[i].src = "../img/slat_type_" + i + ".png";

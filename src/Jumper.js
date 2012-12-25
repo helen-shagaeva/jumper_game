@@ -1,5 +1,5 @@
+var arr = new Array();
 function writeRecord(points1) {//записб рекордов в БД
-    var arr = new Array();
 
     var db = openDatabase("jumpDB", "1.0", "HTML5 Database", 200000);
     if (!db) {
@@ -172,7 +172,7 @@ function Jumper(canvas, util, drawer) {
             //end save to records
             if((navigator.userAgent).indexOf('Chrome') != -1){
                 writeRecord(parseInt(jumperObj.i_score));
-		    } else {
+            } else {
                 alert('For save records you should use Google Chrome');
                 document.location.href = "menu.html";
             }
