@@ -25,34 +25,38 @@ function Drawer(canvas, points_canvas) {
         // todo draw image,s slat for each slats
 
         for (var i = 0; i < slats.length; i++) {
-            if(slats[i].slatType == 1) {
+            if (slats[i].slatType == 1) {
                 var x = slats[i].i_xSlatPos;
-                if((x + util.getSlatWidth(this.canvas) >= this.canvas.width)) {
+                if ((x + util.getSlatWidth(this.canvas) >= this.canvas.width)) {
                     slats[i].direction = true;
-                } else if(x <= 0){
+                } else if (x <= 0) {
                     slats[i].direction = false;
                 }
-                if(slats[i].direction) {
+                if (slats[i].direction) {
                     slats[i].i_xSlatPos -= slats[i].speed;
                 } else {
                     slats[i].i_xSlatPos += slats[i].speed;
                 }
             }
-            if(slats[i].slatType != 4) {
+            if (slats[i].slatType != 4) {
                 this.context.drawImage(util.images[slats[i].slatType], slats[i].i_xSlatPos, slats[i].i_ySlatPos,
                     util.getSlatWidth(this.canvas), util.getSlatHeight(this.canvas));
             }
         }
     };
-    this.drawPoitnsCanvas = function(pt) {
+    this.drawPoitnsCanvas = function (pt) {
         var can = document.getElementById("canvas1");
-        var context = can.getContext("2d");
-        context.clearRect(0,0,can.width, can.height);
-        var font_w = (can.width / 4);
-        context.font = font_w + "px Arial";
-        context.fillStyle = "#ffffff";
-        context.fillRect(11,11,(can.width),50);
-        context.strokeText(pt,20,40);
-        context.strokeStyle = "#000";
+        if (can !== null) {
+            var context = can.getContext("2d");
+
+            context.clearRect(0, 0, can.width, can.height);
+
+            var font_w = (can.width / 4);
+            context.font = font_w + "px Arial";
+            context.fillStyle = "#ffffff";
+            context.fillRect(11, 11, (can.width), 50);
+            context.strokeText(pt, 20, 40);
+            context.strokeStyle = "#000";
+        }
     }
 }

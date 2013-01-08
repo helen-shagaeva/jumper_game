@@ -64,13 +64,108 @@ describe("Global tests", function() {
         });
     });
 
-    describe("Scene tests", function() {
-//        beforeEach(function() {
-//
-//        });
+    describe("Another jumper tests", function() {
+       it("should jump less than limit", function() {
+           slats.push(new Slat(canvas.width/2 - 10, jumper.i_yPos - 20, 0));
+           var max = 999999;
+           while(!jumper.b_boosting){
+               jumper.updateJumper(jumper, slats, scene);
+           }
+           while(jumper.i_yPos < max) {
+               max = jumper.i_yPos;
+               //alert(jumper.i_yPos);
+               jumper.updateJumper(jumper, slats, scene);
+           }
+           expect(max).not.toBeLessThan(jumper.i_maxJumperYPos);
+       });
 
-        it("example scene test", function() {
-            expect(1).not.toEqual(2);
+        describe("interaction with slats", function () {
+            var slats;
+            var first_slat;
+
+//            beforeEach(function () {
+//                slats = new Array();
+//                first_slat = new Slat(first_slat_x, first_slat_y);
+//                slats.push(first_slat);
+//
+//                movingToSlat(jumper, first_slat);
+//            });
+
+            it("should fall when has'n support slat", function () {
+//                jumper.i_xpos = 1000;
+//                var interact = false;
+//                var y_diff = 0;
+//                for (var i = 0; i < 100; i++) {
+//                    y_diff = jumper.i_ypos;
+//                    jumper.updateJumper(jumper, slats);
+//                    y_diff -= jumper.i_ypos;
+//
+//                    if (y_diff > 0) {
+//                        interact = true;
+//                        break;
+//                    }
+//                }
+//
+//                expect(interact).toEqual(false);
+                expect(1).toEqual(1);
+            });
+
+            it("should interact with support slat", function () {
+//                var interact = false;
+//                var y_diff = 0;
+//                for (var i = 0; i < 100; i++) {
+//                    y_diff = jumper.i_ypos;
+//                    jumper.updateJumper(jumper, slats);
+//                    y_diff -= jumper.i_ypos;
+//
+//                    if (y_diff > 0) {
+//                        interact = true;
+//                        break;
+//                    }
+//                }
+//
+//                expect(interact).toEqual(true);
+                expect(1).toEqual(1);
+            });
+        });
+    });
+
+
+    describe("Scene tests", function() {
+        beforeEach(function() {
+            slats.push(new Slat(50, 90, 0));
+            slats.push(new Slat(50, 70, 2));
+            slats.push(new Slat(50, 50, 0));
+            slats.push(new Slat(50, 30, 0));
+            slats.push(new Slat(50, 20, 0));
+            slats.push(new Slat(50, 0, 0));
+            jumper.i_ySlat = 80;
+        });
+
+        it("should move slats", function() {
+            var fSlatY = 90;
+            while(fSlatY == slats[1].i_ySlatPos) {
+                jumper.updateJumper(jumper, slats, scene);
+            }
+            expect(fSlatY).not.toEqual(slats[1].i_ySlatPos);
+        });
+
+        it("should increase points", function() {
+            var score = jumper.i_score;
+            while(score == jumper.i_score) {
+                jumper.updateJumper(jumper, slats, scene);
+            }
+            expect(score).not.toEqual(jumper.i_score);
+        });
+
+        it("should move scene when jumper y pos bigger than limit", function() {
+
+            var fSlatY = 90;
+            while(jumper.i_yPos != jumper.i_maxJumperYPos) {
+                jumper.updateJumper(jumper, slats, scene);
+            }
+            jumper.updateJumper(jumper, slats, scene);
+            expect(fSlatY).not.toEqual(slats[1].i_ySlatPos);
         });
     });
 
