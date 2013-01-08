@@ -18,21 +18,49 @@ describe("Global tests", function() {
         scene = new Scene(generator);
     });
 
-    it("should automatically change position", function() {
-        //expect(canvas.height).toEqual(120);
-        alert(jumper.i_yPos);
-        jumper.updateJumper(jumper, slats, scene);
-        alert(jumper.i_yPos);
-
-    });
-
     describe("Jumper tests", function() {
-//        beforeEach(function() {
-//
-//        });
+        it("should automatically change position", function() {
+            var tmp_position = jumper.i_yPos;
+            jumper.updateJumper(jumper, slats, scene);
+            expect(tmp_position).not.toEqual(jumper.i_yPos);
+        });
 
-        it("example jumper test", function() {
-            expect(1).not.toEqual(2);
+        it("should slow the momentum jump", function() {
+            jumper.i_yAcc = - (canvas.height * 0.045);
+            var tmp_position = jumper.i_yPos;
+            jumper.updateJumper(jumper, slats, scene);
+            var mom_diff = tmp_position - jumper.i_yPos;
+            tmp_position = jumper.i_yPos;
+            jumper.updateJumper(jumper, slats, scene);
+            expect(tmp_position - jumper.i_yPos).toBeLessThan(mom_diff);
+        });
+
+        it("should increases the rate of fall", function() {
+            jumper.i_yPos = jumper.i_yPos - 20;
+            var tmp_position = jumper.i_yPos;
+            jumper.updateJumper(jumper, slats, scene);
+            var mom_diff = jumper.i_yPos - tmp_position;
+            tmp_position = jumper.i_yPos;
+            jumper.updateJumper(jumper, slats, scene);
+            expect(mom_diff).toBeLessThan(jumper.i_yPos - tmp_position);
+        });
+
+        it("should not fall more than base slat", function() {
+            var min = -120000;
+            while(jumper.i_yPos > min) {
+                //alert(jumper.i_yPos);
+                min = jumper.i_yPos;
+                jumper.updateJumper(jumper, slats, scene);
+            }
+            expect(min).toBeLessThan(slats[slats.length-1].i_ySlatPos - jumper.util.getSlatHeight(canvas));
+        });
+
+        it("should fall more than base slat y pos, when x pos mismatch", function() {
+            jumper.i_xPos = jumper.i_xPos + 20;
+            while(jumper.i_yPos < slats[slats.length-1].i_ySlatPos - jumper.util.getSlatHeight(canvas)) {
+                jumper.updateJumper(jumper, slats, scene);
+            }
+            expect(jumper.i_yPos).toBeGreaterThan(slats[slats.length-1].i_ySlatPos - jumper.util.getSlatHeight(canvas));
         });
     });
 

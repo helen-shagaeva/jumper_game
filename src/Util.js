@@ -38,9 +38,9 @@ function gameMsg() {
 }
 
 function playJumpAudio(){
- document.getElementById("player").pause();
+ //document.getElementById("player").pause();
  //document.getElementById("player").currentTime=0;
- document.getElementById("player").play();
+ //document.getElementById("player").play();
 }
 
 function getKeyCode(event) {
